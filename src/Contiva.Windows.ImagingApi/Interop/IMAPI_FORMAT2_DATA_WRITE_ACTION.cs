@@ -1,3 +1,6 @@
+// ReSharper disable InconsistentNaming
+// ReSharper disable UnusedMember.Global
+
 namespace Contiva.Windows.ImagingApi.Interop
 {
     public enum IMAPI_FORMAT2_DATA_WRITE_ACTION

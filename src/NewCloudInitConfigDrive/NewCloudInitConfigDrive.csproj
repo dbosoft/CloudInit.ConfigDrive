@@ -49,7 +49,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\src\Contiva.Windows.ImagingApi\Contiva.Windows.ImagingApi.csproj">
+    <ProjectReference Include="..\Contiva.Windows.ImagingApi\Contiva.Windows.ImagingApi.csproj">
       <Project>{47CC75BB-AD6A-4596-9E55-8CD427A88BBE}</Project>
       <Name>Contiva.Windows.ImagingApi</Name>
     </ProjectReference>

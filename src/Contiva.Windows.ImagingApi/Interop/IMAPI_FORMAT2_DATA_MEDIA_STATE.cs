@@ -1,3 +1,6 @@
+// ReSharper disable InconsistentNaming
+// ReSharper disable UnusedMember.Global
+
 using System.Runtime.InteropServices;
 
 namespace Contiva.Windows.ImagingApi.Interop

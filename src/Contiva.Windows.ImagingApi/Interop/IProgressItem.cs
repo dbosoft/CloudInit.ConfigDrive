@@ -1,5 +1,5 @@
-using System;
 using System.Runtime.InteropServices;
+// ReSharper disable UnusedMember.Global
 
 namespace Contiva.Windows.ImagingApi.Interop
 {
@@ -13,7 +13,7 @@ namespace Contiva.Windows.ImagingApi.Interop
         /// Progress item description
         /// </summary>
         [DispId(1)]
-        String Description { [return: MarshalAs(UnmanagedType.BStr)] get; }
+        string Description { [return: MarshalAs(UnmanagedType.BStr)] get; }
 
         /// <summary>
         /// First block in the range of blocks used by the progress item

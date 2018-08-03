@@ -7,20 +7,19 @@ using System.Threading;
 namespace Contiva.Windows.ImagingApi.Interop
 {
     [ClassInterface(ClassInterfaceType.None)]
+    // ReSharper disable once InconsistentNaming
     internal sealed class DiscFormat2Data_EventsProvider : DiscFormat2Data_Events, IDisposable
     {
         public DiscFormat2Data_EventsProvider(object pointContainer)
         {
             lock (this)
             {
-                if (m_ConnectionPoint == null)
-                {
-                    m_aEventSinkHelpers = new Hashtable();
-                    Guid eventsGuid = typeof(DDiscFormat2DataEvents).GUID;
-                    IConnectionPointContainer connectionPointContainer = pointContainer as IConnectionPointContainer;
+                if (_mConnectionPoint != null) return;
+                _mAEventSinkHelpers = new Hashtable();
+                var eventsGuid = typeof(DDiscFormat2DataEvents).GUID;
+                var connectionPointContainer = pointContainer as IConnectionPointContainer;
 
-                    connectionPointContainer.FindConnectionPoint(ref eventsGuid, out m_ConnectionPoint);
-                }
+                connectionPointContainer?.FindConnectionPoint(ref eventsGuid, out _mConnectionPoint);
             }
         }
 
@@ -30,12 +29,11 @@ namespace Contiva.Windows.ImagingApi.Interop
             {
                 lock (this)
                 {
-                    DiscFormat2Data_SinkHelper helper = new DiscFormat2Data_SinkHelper(value);
-                    int cookie = -1;
+                    var helper = new DiscFormat2Data_SinkHelper(value);
 
-                    m_ConnectionPoint.Advise(helper, out cookie);
+                    _mConnectionPoint.Advise(helper, out var cookie);
                     helper.Cookie = cookie;
-                    m_aEventSinkHelpers.Add(helper.UpdateDelegate, helper);
+                    _mAEventSinkHelpers.Add(helper.UpdateDelegate, helper);
                 }
             }
 
@@ -43,12 +41,9 @@ namespace Contiva.Windows.ImagingApi.Interop
             {
                 lock (this)
                 {
-                    DiscFormat2Data_SinkHelper helper = m_aEventSinkHelpers[value] as DiscFormat2Data_SinkHelper;
-                    if (helper != null)
-                    {
-                        m_ConnectionPoint.Unadvise(helper.Cookie);
-                        m_aEventSinkHelpers.Remove(helper.UpdateDelegate);
-                    }
+                    if (!(_mAEventSinkHelpers[value] is DiscFormat2Data_SinkHelper helper)) return;
+                    _mConnectionPoint.Unadvise(helper.Cookie);
+                    _mAEventSinkHelpers.Remove(helper.UpdateDelegate);
                 }
             }
         }
@@ -69,17 +64,16 @@ namespace Contiva.Windows.ImagingApi.Interop
             Monitor.Enter(this);
             try
             {
-                foreach (DiscFormat2Data_SinkHelper helper in m_aEventSinkHelpers)
+                foreach (DiscFormat2Data_SinkHelper helper in _mAEventSinkHelpers)
                 {
-                    m_ConnectionPoint.Unadvise(helper.Cookie);
+                    _mConnectionPoint.Unadvise(helper.Cookie);
                 }
 
-                m_aEventSinkHelpers.Clear();
-                Marshal.ReleaseComObject(m_ConnectionPoint);
+                _mAEventSinkHelpers.Clear();
+                Marshal.ReleaseComObject(_mConnectionPoint);
             }
             catch (SynchronizationLockException)
             {
-                return;
             }
             finally
             {
@@ -87,7 +81,7 @@ namespace Contiva.Windows.ImagingApi.Interop
             }
         }
 
-        private Hashtable m_aEventSinkHelpers;
-        static private IConnectionPoint m_ConnectionPoint = null;
+        private readonly Hashtable _mAEventSinkHelpers;
+        private static IConnectionPoint _mConnectionPoint = null;
     }
 }

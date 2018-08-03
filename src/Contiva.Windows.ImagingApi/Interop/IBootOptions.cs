@@ -1,6 +1,7 @@
 using System;
 using System.Runtime.InteropServices;
 using System.Runtime.InteropServices.ComTypes;
+// ReSharper disable UnusedMember.Global
 
 namespace Contiva.Windows.ImagingApi.Interop
 {
@@ -20,7 +21,7 @@ namespace Contiva.Windows.ImagingApi.Interop
         /// Get boot manufacturer
         /// </summary>
         [DispId(2)]
-        String Manufacturer { set; [return: MarshalAs(UnmanagedType.BStr)] get; }
+        string Manufacturer { set; [return: MarshalAs(UnmanagedType.BStr)] get; }
 
         /// <summary>
         /// Get boot platform identifier

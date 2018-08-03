@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,10 +15,14 @@ namespace NewCloudInitConfigDrive
         {
             // Create a DiscMaster2 object to connect to CD/DVD drives.
 
-            Imaging samples = new Imaging();
+            var builder = new IsoImageBuilder(FileSystemType.Udf);
 
-            samples.BurnDirectory(@"T:\chef\kitchen");
-
+            builder.AddDirectory(@"T:\chef\kitchen");
+            using(var fileStream = File.OpenWrite("test.iso"))
+            using (var imageStream = builder.Build())
+            {
+                imageStream.CopyTo(fileStream);
+            }
         }
     }
 }

@@ -1,3 +1,7 @@
+// ReSharper disable UnusedMember.Global
+// ReSharper disable InconsistentNaming
+
+
 using System.Collections;
 using System.Runtime.InteropServices;
 

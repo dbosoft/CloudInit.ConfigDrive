@@ -4,12 +4,12 @@ using System.IO;
 using System.Runtime.InteropServices;
 using System.Runtime.InteropServices.ComTypes;
 
-namespace Contiva.Windows.ImagingApi.Interop
+namespace Contiva.Windows.ImagingApi
 {
     /// <summary>
     /// This is a representation of an IO.Stream and IStream object. 
     /// </summary>
-    public class AStream : Stream, IStream, IDisposable
+    public class ImageStream : Stream, IStream, IDisposable
     {
         /// <summary>
         /// Gets a value indicating whether the current stream supports reading.
@@ -163,8 +163,8 @@ namespace Contiva.Windows.ImagingApi.Interop
             {
                 if (offset != 0) throw new NotSupportedException("Only a zero offset is supported.");
 
-                int bytesRead = 0;
-                IntPtr br = Marshal.AllocHGlobal(Marshal.SizeOf(typeof(int)));
+                var bytesRead = 0;
+                var br = Marshal.AllocHGlobal(Marshal.SizeOf(typeof(int)));
                 Marshal.WriteInt32(br, 0);
 
                 // Include try catch for c++ eh exceptions. are they the same as comexceptions?
@@ -192,7 +192,7 @@ namespace Contiva.Windows.ImagingApi.Interop
             if (TheIStream != null)
             {
                 long position = 0;
-                IntPtr pos = Marshal.AllocHGlobal(Marshal.SizeOf(typeof(long)));
+                var pos = Marshal.AllocHGlobal(Marshal.SizeOf(typeof(long)));
                 Marshal.WriteInt64(pos, 0);
 
                 // The enum values of SeekOrigin match the enum values of
@@ -325,13 +325,13 @@ namespace Contiva.Windows.ImagingApi.Interop
         {
             if (TheStream != null)
             {
-                byte[] sourceBytes = new byte[cb];
-                int currentBytesRead = 0;
+                var sourceBytes = new byte[cb];
+                var currentBytesRead = 0;
                 long totalBytesRead = 0;
-                int currentBytesWritten = 0;
+                var currentBytesWritten = 0;
                 long totalBytesWritten = 0;
 
-                IntPtr bw = Marshal.AllocHGlobal(Marshal.SizeOf(typeof(int)));
+                var bw = Marshal.AllocHGlobal(Marshal.SizeOf(typeof(int)));
                 Marshal.WriteInt32(bw, 0);
 
                 while (totalBytesWritten < cb)
@@ -473,7 +473,7 @@ namespace Contiva.Windows.ImagingApi.Interop
                 }
                 else
                 {
-                    SeekOrigin origin = (SeekOrigin)dwOrigin;
+                    var origin = (SeekOrigin)dwOrigin;
                     if (origin != SeekOrigin.Begin &&
                         origin != SeekOrigin.Current &&
                         origin != SeekOrigin.End)
@@ -591,7 +591,7 @@ namespace Contiva.Windows.ImagingApi.Interop
                 }
                 else
                 {
-                    long currentPosition = TheStream.Position;
+                    var currentPosition = TheStream.Position;
                     TheStream.Write(pv, 0, cb);
                     Marshal.WriteInt32(pcbWritten, (int)(TheStream.Position - currentPosition));
                 }
@@ -603,14 +603,14 @@ namespace Contiva.Windows.ImagingApi.Interop
         }
 
         // Default constructor. Should not be used to create an AStream object.
-        private AStream()
+        private ImageStream()
         {
             TheStream = null;
             TheIStream = null;
         }
 
         // Copy constructor. It is not safe to only pass the Stream and IStream.
-        private AStream(AStream previousAStream)
+        private ImageStream(ImageStream previousAStream)
         {
             TheStream = previousAStream.TheStream;
             TheIStream = previousAStream.TheIStream;
@@ -621,7 +621,7 @@ namespace Contiva.Windows.ImagingApi.Interop
         /// </summary>
         /// <param name="stream">An IO.Stream</param>
         ///<exception cref="ArgumentNullException">Stream cannot be null</exception>
-        public AStream(Stream stream)
+        public ImageStream(Stream stream)
         {
             TheStream = null;
             TheIStream = null;
@@ -638,7 +638,7 @@ namespace Contiva.Windows.ImagingApi.Interop
         /// </summary>
         /// <param name="stream">A ComTypes.IStream</param>
         ///<exception cref="ArgumentNullException">Stream cannot be null</exception>
-        public AStream(IStream stream)
+        public ImageStream(IStream stream)
         {
             TheStream = null;
             TheIStream = null;
@@ -653,7 +653,7 @@ namespace Contiva.Windows.ImagingApi.Interop
         // Allows the Object to attempt to free resources and perform other 
         // cleanup operations before the Object is reclaimed by garbage collection. 
         // (Inherited from Object.)
-        ~AStream()
+        ~ImageStream()
         {
             if (TheStream != null)
             {
@@ -707,7 +707,7 @@ namespace Contiva.Windows.ImagingApi.Interop
         {
             if (stream is Stream)
             {
-                return new AStream(stream as Stream);
+                return new ImageStream(stream as Stream);
             }
 
             if (stream is IStream)
@@ -727,14 +727,14 @@ namespace Contiva.Windows.ImagingApi.Interop
 
             if (stream is IStream)
             {
-                return new AStream(stream as IStream);
+                return new ImageStream(stream as IStream);
             }
 
             return null;
         }
 
-        private Stream TheStream;   // The Stream being wrapped
-        private IStream TheIStream; // The IStream being wrapped
+        private readonly Stream TheStream;   // The Stream being wrapped
+        private readonly IStream TheIStream; // The IStream being wrapped
 
     }
 }

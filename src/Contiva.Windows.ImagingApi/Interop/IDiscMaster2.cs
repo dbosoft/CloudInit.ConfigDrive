@@ -24,7 +24,7 @@ namespace Contiva.Windows.ImagingApi.Interop
         /// <param name="index">Zero based index</param>
         /// <returns>Recorder's unique id</returns>
         [DispId(0)]
-        String this[int index] { [return: MarshalAs(UnmanagedType.BStr)] get; }
+        string this[int index] { [return: MarshalAs(UnmanagedType.BStr)] get; }
 
         /// <summary>
         /// The current number of recorders in the system.

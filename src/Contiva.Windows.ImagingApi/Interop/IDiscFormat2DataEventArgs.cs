@@ -1,4 +1,5 @@
 using System.Runtime.InteropServices;
+// ReSharper disable UnusedMember.Global
 
 namespace Contiva.Windows.ImagingApi.Interop
 {

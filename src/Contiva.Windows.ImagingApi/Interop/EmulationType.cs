@@ -1,5 +1,8 @@
+using System;
+
 namespace Contiva.Windows.ImagingApi.Interop
-{
+{ 
+    [Flags]
     public enum EmulationType
     {
         EmulationNone = 0,

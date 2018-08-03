@@ -28,7 +28,7 @@ namespace Contiva.Windows.ImagingApi.Interop
         /// <param name="force"></param>
         /// <param name="clientName">App Id</param>
         [DispId(258)]
-        void AcquireExclusiveAccess([MarshalAs(UnmanagedType.VariantBool)] bool force, [MarshalAs(UnmanagedType.BStr)] String clientName);
+        void AcquireExclusiveAccess([MarshalAs(UnmanagedType.VariantBool)] bool force, [MarshalAs(UnmanagedType.BStr)] string clientName);
 
         /// <summary>
         /// Releases exclusive access to device. 
@@ -54,43 +54,43 @@ namespace Contiva.Windows.ImagingApi.Interop
         /// </summary>
         /// <param name="recorderUniqueId"></param>
         [DispId(262)]
-        void InitializeDiscRecorder([MarshalAs(UnmanagedType.BStr)] String recorderUniqueId);
+        void InitializeDiscRecorder([MarshalAs(UnmanagedType.BStr)] string recorderUniqueId);
 
         /// <summary>
         /// The unique ID used to initialize the recorder.
         /// </summary>
         [DispId(0)]
-        String ActiveDiscRecorder { [return: MarshalAs(UnmanagedType.BStr)] get; }
+        string ActiveDiscRecorder { [return: MarshalAs(UnmanagedType.BStr)] get; }
 
         /// <summary>
         /// The vendor ID in the device's INQUIRY data.
         /// </summary>
         [DispId(513)]
-        String VendorId { [return: MarshalAs(UnmanagedType.BStr)] get; }
+        string VendorId { [return: MarshalAs(UnmanagedType.BStr)] get; }
 
         /// <summary>
         /// The Product ID in the device's INQUIRY data.
         /// </summary>
         [DispId(514)]
-        String ProductId { [return: MarshalAs(UnmanagedType.BStr)] get; }
+        string ProductId { [return: MarshalAs(UnmanagedType.BStr)] get; }
 
         /// <summary>
         /// The Product Revision in the device's INQUIRY data.
         /// </summary>
         [DispId(515)]
-        String ProductRevision { [return: MarshalAs(UnmanagedType.BStr)] get; }
+        string ProductRevision { [return: MarshalAs(UnmanagedType.BStr)] get; }
 
         /// <summary>
         /// Get the unique volume name (this is not a drive letter).
         /// </summary>
         [DispId(516)]
-        String VolumeName { [return: MarshalAs(UnmanagedType.BStr)] get; }
+        string VolumeName { [return: MarshalAs(UnmanagedType.BStr)] get; }
 
         /// <summary>
         /// Drive letters and NTFS mount points to access the recorder.
         /// </summary>
         [DispId(517)]
-        String[] VolumePathNames { [return: MarshalAs(UnmanagedType.SafeArray, SafeArraySubType = VarEnum.VT_VARIANT)] get; }
+        string[] VolumePathNames { [return: MarshalAs(UnmanagedType.SafeArray, SafeArraySubType = VarEnum.VT_VARIANT)] get; }
 
         /// <summary>
         /// One of the volume names associated with the recorder.
@@ -139,6 +139,6 @@ namespace Contiva.Windows.ImagingApi.Interop
         /// Queries the device to determine who, if anyone, has acquired exclusive access
         /// </summary>
         [DispId(525)]
-        String ExclusiveAccessOwner { [return: MarshalAs(UnmanagedType.BStr)] get; }
+        string ExclusiveAccessOwner { [return: MarshalAs(UnmanagedType.BStr)] get; }
     }
 }

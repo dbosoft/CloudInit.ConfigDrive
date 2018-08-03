@@ -1,5 +1,6 @@
 using System;
 using System.Runtime.InteropServices;
+// ReSharper disable UnusedMember.Global
 
 namespace Contiva.Windows.ImagingApi.Interop
 {
@@ -13,13 +14,13 @@ namespace Contiva.Windows.ImagingApi.Interop
         /// Item name
         /// </summary>
         [DispId(11)]
-        String Name { [return: MarshalAs(UnmanagedType.BStr)] get; }
+        string Name { [return: MarshalAs(UnmanagedType.BStr)] get; }
 
         /// <summary>
         /// Path
         /// </summary>
         [DispId(12)]
-        String FullPath { [return: MarshalAs(UnmanagedType.BStr)] get; }
+        string FullPath { [return: MarshalAs(UnmanagedType.BStr)] get; }
 
         /// <summary>
         /// Date and time of creation

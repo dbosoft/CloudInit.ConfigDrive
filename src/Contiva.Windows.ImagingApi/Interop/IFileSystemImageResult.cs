@@ -1,6 +1,7 @@
 using System;
 using System.Runtime.InteropServices;
 using System.Runtime.InteropServices.ComTypes;
+// ReSharper disable UnusedMember.Global
 
 namespace Contiva.Windows.ImagingApi.Interop
 {
@@ -38,6 +39,6 @@ namespace Contiva.Windows.ImagingApi.Interop
         /// Disc Identifier (for identifing imported session of multi-session disc)
         /// </summary>
         [DispId(5)]
-        String DiscId { [return: MarshalAs(UnmanagedType.BStr)] get; }
+        string DiscId { [return: MarshalAs(UnmanagedType.BStr)] get; }
     }
 }

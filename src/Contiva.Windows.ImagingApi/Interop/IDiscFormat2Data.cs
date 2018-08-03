@@ -1,6 +1,8 @@
 using System;
 using System.Runtime.InteropServices;
 using System.Runtime.InteropServices.ComTypes;
+// ReSharper disable InconsistentNaming
+// ReSharper disable UnusedMember.Global
 
 namespace Contiva.Windows.ImagingApi.Interop
 {
@@ -136,7 +138,7 @@ namespace Contiva.Windows.ImagingApi.Interop
         /// (used to determine recorder reservation conflicts).
         /// </summary>
         [DispId(272)]
-        String ClientName { set; [return: MarshalAs(UnmanagedType.BStr)] get; }
+        string ClientName { set; [return: MarshalAs(UnmanagedType.BStr)] get; }
 
         /// <summary>
         /// The last requested write speed.

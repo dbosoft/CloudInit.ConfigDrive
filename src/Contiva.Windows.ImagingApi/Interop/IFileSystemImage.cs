@@ -1,5 +1,6 @@
 using System;
 using System.Runtime.InteropServices;
+// ReSharper disable UnusedMember.Global
 
 namespace Contiva.Windows.ImagingApi.Interop
 {
@@ -45,13 +46,13 @@ namespace Contiva.Windows.ImagingApi.Interop
         /// Volume name
         /// </summary>
         [DispId(4)]
-        String VolumeName { set; [return: MarshalAs(UnmanagedType.BStr)] get; }
+        string VolumeName { set; [return: MarshalAs(UnmanagedType.BStr)] get; }
 
         /// <summary>
         /// Imported Volume name
         /// </summary>
         [DispId(5)]
-        String ImportedVolumeName { [return: MarshalAs(UnmanagedType.BStr)] get; }
+        string ImportedVolumeName { [return: MarshalAs(UnmanagedType.BStr)] get; }
 
         /// <summary>
         /// Boot image and boot options
@@ -75,7 +76,7 @@ namespace Contiva.Windows.ImagingApi.Interop
         /// Temp directory for stash files
         /// </summary>
         [DispId(9)]
-        String WorkingDirectory { set; [return: MarshalAs(UnmanagedType.BStr)] get; }
+        string WorkingDirectory { set; [return: MarshalAs(UnmanagedType.BStr)] get; }
 
         /// <summary>
         /// Change point identifier
@@ -230,19 +231,19 @@ namespace Contiva.Windows.ImagingApi.Interop
         /// Volume name
         /// </summary>
         [DispId(27)]
-        String VolumeNameUDF { [return: MarshalAs(UnmanagedType.BStr)] get; }
+        string VolumeNameUDF { [return: MarshalAs(UnmanagedType.BStr)] get; }
 
         /// <summary>
         /// Volume name
         /// </summary>
         [DispId(28)]
-        String VolumeNameJoliet { [return: MarshalAs(UnmanagedType.BStr)] get; }
+        string VolumeNameJoliet { [return: MarshalAs(UnmanagedType.BStr)] get; }
 
         /// <summary>
         /// Volume name
         /// </summary>
         [DispId(29)]
-        String VolumeNameISO9660 { [return: MarshalAs(UnmanagedType.BStr)] get; }
+        string VolumeNameISO9660 { [return: MarshalAs(UnmanagedType.BStr)] get; }
 
         /// <summary>
         /// Indicates whether or not IMAPI should stage the filesystem before the burn.
