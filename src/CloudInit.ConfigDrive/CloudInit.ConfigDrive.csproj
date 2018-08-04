@@ -1,0 +1,95 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{80871107-F264-4776-9942-AB80C227C613}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Contiva.CloudInit.ConfigDrive</RootNamespace>
+    <AssemblyName>Contiva.CloudInit.ConfigDrive</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Newtonsoft.Json.11.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="SimpleInjector, Version=4.3.0.0, Culture=neutral, PublicKeyToken=984cb50dea722e99, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\SimpleInjector.4.3.0\lib\net45\SimpleInjector.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+    <Reference Include="YamlDotNet, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\YamlDotNet.5.0.1\lib\net45\YamlDotNet.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ConfigDriveContent.cs" />
+    <Compile Include="ConfigDriveProxySettings.cs" />
+    <Compile Include="Generator\BaseBuilder.cs" />
+    <Compile Include="Generator\ConfigDriveGenerator.cs" />
+    <Compile Include="Generator\DummyCommandHandler.cs" />
+    <Compile Include="Generator\GeneratableBuilder.cs" />
+    <Compile Include="Generator\GeneratorBuilder.cs" />
+    <Compile Include="Generator\IBuilder.cs" />
+    <Compile Include="Generator\IConfigDriveGenerator.cs" />
+    <Compile Include="Generator\IGenerateableBuilder.cs" />
+    <Compile Include="ICommandHandler.cs" />
+    <Compile Include="NoCloud\GenerateContentConfigCommandHandlerDecorator.cs" />
+    <Compile Include="NoCloud\GenerateMetaDataCommand.cs" />
+    <Compile Include="NoCloud\GenerateMetaDataCommandHandler.cs" />
+    <Compile Include="NoCloud\GenerateNetworkDataCommand.cs" />
+    <Compile Include="NoCloud\GenerateNetworkDataCommandHandler.cs" />
+    <Compile Include="NoCloud\GenerateProxyConfigCommandHandlerDecorator.cs" />
+    <Compile Include="NoCloud\GenerateResultCommand.cs" />
+    <Compile Include="NoCloud\GenerateSwapConfigCommandHandlerDecorator.cs" />
+    <Compile Include="NoCloud\GenerateUserDataCommand.cs" />
+    <Compile Include="NoCloud\GenerateUserDataCommandHandler.cs" />
+    <Compile Include="NoCloud\NoCloudConfigDriveMetaData.cs" />
+    <Compile Include="NoCloud\NoCloudGenerateResultCommandHandler.cs" />
+    <Compile Include="NoCloud\NoCloudGeneratorBuilder.cs" />
+    <Compile Include="NoCloud\NoCloudGeneratorBuilderExtensions.cs" />
+    <Compile Include="Processing\CallbackProcessResultCommandHandlerDecoration.cs" />
+    <Compile Include="Processing\IProcessableBuilder.cs" />
+    <Compile Include="Processing\ProcessingBuilderExtensions.cs" />
+    <Compile Include="Processing\ProcessorBuilder.cs" />
+    <Compile Include="Processing\ProcessResultCommand.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ResultFile.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Windows.ImagingApi\Windows.ImagingApi.csproj">
+      <Project>{47cc75bb-ad6a-4596-9e55-8cd427a88bbe}</Project>
+      <Name>Windows.ImagingApi</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

@@ -1,14 +1,15 @@
 ﻿using System.Reflection;
+using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("NewCloudInitConfigDrive")]
+[assembly: AssemblyTitle("CloudInit.ConfigDrive")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("NewCloudInitConfigDrive")]
+[assembly: AssemblyProduct("CloudInit.ConfigDrive")]
 [assembly: AssemblyCopyright("Copyright ©  2018")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -19,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("4fdd02eb-138c-465b-8d41-22fd3738e4c7")]
+[assembly: Guid("80871107-f264-4776-9942-ab80c227c613")]
 
 // Version information for an assembly consists of the following four values:
 //
