@@ -1,9 +1,18 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <AssemblyName>Contiva.CloudInit.ConfigDrive</AssemblyName>
     <RootNamespace>Contiva.CloudInit.ConfigDrive</RootNamespace>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+    <PackageLicenseUrl>https://github.com/contiva/CloudInit.ConfigDrive/blob/master/LICENSE</PackageLicenseUrl>
+    <PackageProjectUrl>https://github.com/contiva/CloudInit.ConfigDrive</PackageProjectUrl>
+    <Copyright>Contiva</Copyright>
+    <Authors>Contiva</Authors>
+    <Company>Contiva</Company>
+    <Product>Contiva.CloudInit.ConfigDrive</Product>
+    <RepositoryUrl>https://github.com/contiva/CloudInit.ConfigDrive</RepositoryUrl>
   </PropertyGroup>
 
   <ItemGroup>
@@ -13,6 +22,13 @@
   <ItemGroup>
     <Folder Include="Generator\" />
     <Folder Include="Processing\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="GitVersionTask" Version="4.0.0-beta0014">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
+    </PackageReference>
   </ItemGroup>
 
 </Project>
