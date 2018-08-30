@@ -64,7 +64,7 @@ We use [SemVer](http://semver.org/) for versioning. For the versions available, 
 
 * **Frank Wagner** - *Initial work* - [fw2568](https://github.com/fw2568)
 
-See also the list of [contributors](https://github.com/cloudinit.configdrive/contributors) who participated in this project.
+See also the list of [contributors](https://github.com/contiva/cloudinit.configdrive/contributors) who participated in this project.
 
 ## License
 
