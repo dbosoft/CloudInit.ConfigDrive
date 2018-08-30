@@ -1,5 +1,4 @@
-﻿using Contiva.CloudInit.ConfigDrive.NoCloud;
-using Contiva.CloudInit.ConfigDrive.Processing;
+﻿using Contiva.CloudInit.ConfigDrive.Processing;
 
 namespace Contiva.CloudInit.ConfigDrive.Generator
 {

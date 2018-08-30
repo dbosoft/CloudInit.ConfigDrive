@@ -1,4 +1,4 @@
-﻿namespace Contiva.CloudInit.ConfigDrive.NoCloud
+﻿namespace Contiva.CloudInit.ConfigDrive.Generator
 {
     public class GenerateResultCommand
     {

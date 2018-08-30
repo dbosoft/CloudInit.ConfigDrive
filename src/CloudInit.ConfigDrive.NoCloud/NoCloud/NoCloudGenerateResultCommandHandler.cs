@@ -1,6 +1,7 @@
 ﻿using System.Dynamic;
 using System.IO;
 using System.Text;
+using Contiva.CloudInit.ConfigDrive.Generator;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using Newtonsoft.Json.Linq;
