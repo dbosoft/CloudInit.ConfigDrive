@@ -1,9 +1,18 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <AssemblyName>Contiva.CloudInit.ConfigDrive.NoCloud</AssemblyName>
     <RootNamespace>Contiva.CloudInit.ConfigDrive</RootNamespace>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+    <PackageLicenseUrl>https://github.com/contiva/CloudInit.ConfigDrive/blob/master/LICENSE</PackageLicenseUrl>
+    <PackageProjectUrl>https://github.com/contiva/CloudInit.ConfigDrive</PackageProjectUrl>
+    <Copyright>Contiva</Copyright>
+    <Authors>Contiva</Authors>
+    <Company>Contiva</Company>
+    <Product>Contiva.CloudInit.ConfigDrive</Product>
+    <RepositoryUrl>https://github.com/contiva/CloudInit.ConfigDrive</RepositoryUrl>
   </PropertyGroup>
 
   <ItemGroup>

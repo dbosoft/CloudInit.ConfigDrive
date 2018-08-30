@@ -4,6 +4,16 @@
     <TargetFramework>net471</TargetFramework>
     <RootNamespace>Contiva.CloudInit.ConfigDrive</RootNamespace>
     <AssemblyName>Contiva.CloudInit.ConfigDrive.WindowsImaging</AssemblyName>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+    <PackageLicenseUrl>https://github.com/contiva/CloudInit.ConfigDrive/blob/master/LICENSE</PackageLicenseUrl>
+    <PackageProjectUrl>https://github.com/contiva/CloudInit.ConfigDrive</PackageProjectUrl>
+    <Copyright>Contiva</Copyright>
+    <Authors>Contiva</Authors>
+    <Company>Contiva</Company>
+    <Product>Contiva.CloudInit.ConfigDrive</Product>
+    <RepositoryUrl>https://github.com/contiva/CloudInit.ConfigDrive</RepositoryUrl>
+
   </PropertyGroup>
 
   <ItemGroup>
