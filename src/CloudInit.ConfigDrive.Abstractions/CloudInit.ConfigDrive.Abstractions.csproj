@@ -1,0 +1,9 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <RootNamespace>Contiva.CloudInit.ConfigDrive</RootNamespace>
+    <AssemblyName>Contiva.CloudInit.ConfigDrive.Abstractions</AssemblyName>
+  </PropertyGroup>
+
+</Project>

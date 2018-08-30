@@ -2,17 +2,16 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <AssemblyName>Contiva.CloudInit.ConfigDrive</AssemblyName>
+    <AssemblyName>Contiva.CloudInit.ConfigDrive.NoCloud</AssemblyName>
     <RootNamespace>Contiva.CloudInit.ConfigDrive</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\CloudInit.ConfigDrive.Core\CloudInit.ConfigDrive.Core.csproj" />
+    <PackageReference Include="Microsoft.CSharp" Version="4.5.0" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Generator\" />
-    <Folder Include="Processing\" />
+    <ProjectReference Include="..\CloudInit.ConfigDrive.Core\CloudInit.ConfigDrive.Core.csproj" />
   </ItemGroup>
 
 </Project>

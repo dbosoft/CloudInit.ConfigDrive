@@ -1,0 +1,14 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net471</TargetFramework>
+    <RootNamespace>Contiva.CloudInit.ConfigDrive</RootNamespace>
+    <AssemblyName>Contiva.CloudInit.ConfigDrive.WindowsImaging</AssemblyName>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\CloudInit.ConfigDrive.Core\CloudInit.ConfigDrive.Core.csproj" />
+    <ProjectReference Include="..\Windows.ImagingApi\Windows.ImagingApi.csproj" />
+  </ItemGroup>
+
+</Project>

@@ -6,7 +6,7 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{4FDD02EB-138C-465B-8D41-22FD3738E4C7}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>NewCloudInitConfigDrive</RootNamespace>
+    <RootNamespace>Contiva.CloudInit.ConfigDrive</RootNamespace>
     <AssemblyName>NewCloudInitConfigDrive</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>

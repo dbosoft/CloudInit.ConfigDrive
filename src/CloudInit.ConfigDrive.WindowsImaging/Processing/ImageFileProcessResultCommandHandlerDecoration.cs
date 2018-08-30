@@ -1,26 +1,8 @@
-﻿using System;
-using System.IO;
+﻿using System.IO;
 using Contiva.Windows.ImagingApi;
 
 namespace Contiva.CloudInit.ConfigDrive.Processing
 {
-    internal class CallbackProcessResultCommandHandlerDecoration : ICommandHandler<ProcessResultCommand>
-    {
-        public Action<ConfigDriveContent> ContentAction { get; set; }
-        private readonly ICommandHandler<ProcessResultCommand> _decoratedHandler;
-
-        public CallbackProcessResultCommandHandlerDecoration(ICommandHandler<ProcessResultCommand> decoratedHandler)
-        {
-            _decoratedHandler = decoratedHandler;
-        }
-
-        public void HandleCommand(ProcessResultCommand command)
-        {
-            ContentAction?.Invoke(command.Content);
-            _decoratedHandler.HandleCommand(command);
-        }
-    }
-
     internal class ImageFileProcessResultCommandHandlerDecoration : ICommandHandler<ProcessResultCommand>
     {
         public string Filename { get; set; }

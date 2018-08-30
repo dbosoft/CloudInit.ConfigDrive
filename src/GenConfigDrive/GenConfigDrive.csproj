@@ -1,0 +1,19 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net471</TargetFramework>
+    <RootNamespace>Contiva.CloudInit.ConfigDrive</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="CommandLineParser" Version="2.3.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\CloudInit.ConfigDrive.NoCloud\CloudInit.ConfigDrive.NoCloud.csproj" />
+    <ProjectReference Include="..\CloudInit.ConfigDrive.WindowsImaging\CloudInit.ConfigDrive.WindowsImaging.csproj" />
+    <ProjectReference Include="..\CloudInit.ConfigDrive\CloudInit.ConfigDrive.csproj" />
+  </ItemGroup>
+
+</Project>

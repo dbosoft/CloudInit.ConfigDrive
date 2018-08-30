@@ -47,7 +47,7 @@ namespace NewCloudInitConfigDrive
 
 
                 if (!string.IsNullOrWhiteSpace(opts.ImagePath))
-                    processingBuilder.ImageFile(opts.ImagePath);
+                    processingBuilder.Image().ImageFile(opts.ImagePath);
                 else
                 {
                     processingBuilder.Callback(result =>
