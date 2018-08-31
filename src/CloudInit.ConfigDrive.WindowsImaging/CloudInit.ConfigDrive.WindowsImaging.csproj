@@ -25,7 +25,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\CloudInit.ConfigDrive.Core\CloudInit.ConfigDrive.Core.csproj" />
-    <ProjectReference Include="..\Windows.ImagingApi\Windows.ImagingApi.csproj" />
-  </ItemGroup>
+</ItemGroup>
 
 </Project>
