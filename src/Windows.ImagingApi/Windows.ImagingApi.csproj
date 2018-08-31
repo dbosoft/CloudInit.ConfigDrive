@@ -54,52 +54,6 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="AssemblyInfo.cs" />
-    <Compile Include="IsoImageBuilder.cs" />
-    <Compile Include="ImageStream.cs" />
-    <Compile Include="Interop\DDiscFormat2DataEvents.cs" />
-    <Compile Include="Interop\DiscFormat2Data_Events.cs" />
-    <Compile Include="Interop\DiscFormat2Data_EventsHandler.cs" />
-    <Compile Include="Interop\DiscFormat2Data_EventsProvider.cs" />
-    <Compile Include="Interop\EmulationType.cs" />
-    <Compile Include="Interop\FsiFileSystems.cs" />
-    <Compile Include="Interop\FsiItemType.cs" />
-    <Compile Include="Interop\IBootOptions.cs" />
-    <Compile Include="Interop\IDiscFormat2Data.cs" />
-    <Compile Include="Interop\IDiscFormat2DataEventArgs.cs" />
-    <Compile Include="Interop\IDiscMaster2.cs" />
-    <Compile Include="Interop\IDiscRecorder2.cs" />
-    <Compile Include="Interop\IDiscRecorder2Ex.cs" />
-    <Compile Include="Interop\IEnumFsiItems.cs" />
-    <Compile Include="Interop\IEnumProgressItems.cs" />
-    <Compile Include="Interop\IFileSystemImage.cs" />
-    <Compile Include="Interop\IFileSystemImageResult.cs" />
-    <Compile Include="Interop\IFsiDirectoryItem.cs" />
-    <Compile Include="Interop\IFsiFileItem.cs" />
-    <Compile Include="Interop\IFsiItem.cs" />
-    <Compile Include="Interop\DiscFormat2Data_SinkHelper.cs" />
-    <Compile Include="Interop\IMAPI_FEATURE_PAGE_TYPE.cs" />
-    <Compile Include="Interop\IMAPI_FORMAT2_DATA_MEDIA_STATE.cs" />
-    <Compile Include="Interop\IMAPI_FORMAT2_DATA_WRITE_ACTION.cs" />
-    <Compile Include="Interop\IMAPI_MEDIA_PHYSICAL_TYPE.cs" />
-    <Compile Include="Interop\IMAPI_MEDIA_WRITE_PROTECT_STATE.cs" />
-    <Compile Include="Interop\IMAPI_MODE_PAGE_REQUEST_TYPE.cs" />
-    <Compile Include="Interop\IMAPI_MODE_PAGE_TYPE.cs" />
-    <Compile Include="Interop\IMAPI_PROFILE_TYPE.cs" />
-    <Compile Include="Interop\IMAPI_READ_TRACK_ADDRESS_TYPE.cs" />
-    <Compile Include="Interop\IProgressItem.cs" />
-    <Compile Include="Interop\IProgressItems.cs" />
-    <Compile Include="Interop\MsftBootOptions.cs" />
-    <Compile Include="Interop\MsftBootOptionsClass.cs" />
-    <Compile Include="Interop\MsftDiscFormat2Data.cs" />
-    <Compile Include="Interop\MsftDiscFormat2DataClass.cs" />
-    <Compile Include="Interop\MsftDiscMaster2.cs" />
-    <Compile Include="Interop\MsftDiscMaster2Class.cs" />
-    <Compile Include="Interop\MsftDiscRecorder2.cs" />
-    <Compile Include="Interop\MsftDiscRecorder2Class.cs" />
-    <Compile Include="Interop\MsftDiscRecorder2Ex.cs" />
-    <Compile Include="Interop\MsftFileSystemImage.cs" />
-    <Compile Include="Interop\MsftFileSystemImageClass.cs" />
-    <Compile Include="Interop\PlatformId.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="CustomMarshalers" />
