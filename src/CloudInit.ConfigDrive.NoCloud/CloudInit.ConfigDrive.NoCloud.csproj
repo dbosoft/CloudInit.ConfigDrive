@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
+    <TargetFrameworks>net45;netstandard1.3;netstandard2.0</TargetFrameworks>
     <AssemblyName>Contiva.CloudInit.ConfigDrive.NoCloud</AssemblyName>
     <RootNamespace>Contiva.CloudInit.ConfigDrive</RootNamespace>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>

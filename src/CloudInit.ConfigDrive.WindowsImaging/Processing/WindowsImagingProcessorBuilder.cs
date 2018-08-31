@@ -13,9 +13,8 @@ namespace Contiva.CloudInit.ConfigDrive.Processing
         public ProcessorBuilder ImageFile(string filename)
         {
             Container
-                .RegisterDecorator<ICommandHandler<ProcessResultCommand>, ImageFileProcessResultCommandHandlerDecoration>();
-            Container.RegisterInitializer<ImageFileProcessResultCommandHandlerDecoration>(
-                s => s.Filename = filename);
+                .Decorate<ICommandHandler<ProcessResultCommand>>(
+                    c=> new ImageFileProcessResultCommandHandlerDecoration(c.Get<ICommandHandler<ProcessResultCommand>>()){Filename = filename});
 
             return this;
         }

@@ -8,48 +8,46 @@ namespace Contiva.CloudInit.ConfigDrive.NoCloud
     {
         internal NoCloudGeneratorBuilder(IBuilder innerBuilder) : base(innerBuilder)
         {
-            Container.Register<ICommandHandler<GenerateResultCommand>, NoCloudGenerateResultCommandHandler>();
+            Container.Register<ICommandHandler<GenerateResultCommand>>(
+                c=> new NoCloudGenerateResultCommandHandler(
+                    c.Get<ICommandHandler<GenerateMetaDataCommand>>(),
+                    c.Get<ICommandHandler<GenerateUserDataCommand>>(),
+                    c.Get<ICommandHandler<GenerateNetworkDataCommand>>()));
 
-            Container.Register<ICommandHandler<GenerateMetaDataCommand>, GenerateMetaDataCommandHandler>();
-            Container.RegisterInitializer< GenerateMetaDataCommandHandler>(h => h.Metadata = Metadata);
+            Container.Register<ICommandHandler<GenerateMetaDataCommand>>(
+                c=> new GenerateMetaDataCommandHandler{ Metadata = Metadata});
 
-            Container.Register<ICommandHandler<GenerateUserDataCommand>, GenerateUserDataCommandHandler>();
-            Container.RegisterInitializer<GenerateUserDataCommandHandler>(h => h.UserData = _userData);
+            Container.Register<ICommandHandler<GenerateUserDataCommand>>(
+                c => new GenerateUserDataCommandHandler { UserData = _userData });
 
-            Container.Register<ICommandHandler<GenerateNetworkDataCommand>, GenerateNetworkDataCommandHandler>();
-            Container.RegisterInitializer<GenerateNetworkDataCommandHandler>(h => h.NetworkData = _networkData);
+            Container.Register<ICommandHandler<GenerateNetworkDataCommand>>(
+                c => new GenerateNetworkDataCommandHandler { NetworkData = _networkData });
 
         }
 
         public NoCloudGeneratorBuilder SwapFile(string filename = "/swap.img", string size = "auto")
         {
-            Container.RegisterDecorator<ICommandHandler<GenerateUserDataCommand>, GenerateSwapConfigCommandHandlerDecorator>();
-            Container.RegisterInitializer<GenerateSwapConfigCommandHandlerDecorator>(h =>
-            {
-                h.Filename = filename;
-                h.Size = size;
-            });
+            Container.Decorate<ICommandHandler<GenerateUserDataCommand>>(
+                c => new GenerateSwapConfigCommandHandlerDecorator(
+                    c.Get<ICommandHandler<GenerateUserDataCommand>>()){ Filename = filename, Size = size});
+
             return this;
         }
 
         public NoCloudGeneratorBuilder Content(string filename)
         {
-            Container.RegisterDecorator<ICommandHandler<GenerateUserDataCommand>, GenerateContentConfigCommandHandlerDecorator>();
-            Container.RegisterInitializer<GenerateContentConfigCommandHandlerDecorator>(h =>
-            {
-                h.Filename = filename;
+            Container.Decorate<ICommandHandler<GenerateUserDataCommand>>(c =>
+                new GenerateContentConfigCommandHandlerDecorator(
+                    c.Get<ICommandHandler<GenerateUserDataCommand>>()) {Filename = filename});
 
-            });
             return this;
         }
 
         public NoCloudGeneratorBuilder ProxySettings(ConfigDriveProxySettings proxySettings)
         {
-            Container.RegisterDecorator<ICommandHandler<GenerateUserDataCommand>, GenerateProxyConfigCommandHandlerDecorator>();
-            Container.RegisterInitializer<GenerateProxyConfigCommandHandlerDecorator>(h =>
-            {
-                h.ProxySettings = proxySettings;
-            });
+            Container.Decorate<ICommandHandler<GenerateUserDataCommand>>(
+                c=> new GenerateProxyConfigCommandHandlerDecorator(c.Get<ICommandHandler<GenerateUserDataCommand>>()){ProxySettings = proxySettings});
+
             return this;
         }
 
