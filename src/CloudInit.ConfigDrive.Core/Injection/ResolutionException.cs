@@ -2,11 +2,10 @@
 // source: https://raw.githubusercontent.com/rebus-org/Rebus/master/Rebus/Injection/ResolutionException.cs
 
 using System;
-using System.Runtime.Serialization;
 #if NET45
 using System.Runtime.Serialization;
 #elif NETSTANDARD2_0
-
+using System.Runtime.Serialization;
 #endif
 
 namespace Contiva.CloudInit.ConfigDrive.Injection
