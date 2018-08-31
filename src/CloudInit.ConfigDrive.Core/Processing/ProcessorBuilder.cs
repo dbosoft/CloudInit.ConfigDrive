@@ -12,9 +12,9 @@ namespace Contiva.CloudInit.ConfigDrive.Processing
         public ProcessorBuilder Callback(Action<ConfigDriveContent> contentAction)
         {
             Container
-                .RegisterDecorator<ICommandHandler<ProcessResultCommand>, CallbackProcessResultCommandHandlerDecoration>();
-            Container.RegisterInitializer<CallbackProcessResultCommandHandlerDecoration>(
-                s => s.ContentAction = contentAction);
+                .Decorate<ICommandHandler<ProcessResultCommand>>(
+                c=> new CallbackProcessResultCommandHandlerDecoration(
+                    c.Get<ICommandHandler<ProcessResultCommand>>()) {ContentAction = contentAction});
             return this;
         }
 

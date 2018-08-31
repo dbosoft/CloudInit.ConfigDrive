@@ -1,13 +1,13 @@
-﻿using SimpleInjector;
+﻿using Contiva.CloudInit.ConfigDrive.Injection;
 
 namespace Contiva.CloudInit.ConfigDrive.Generator
 {
     public class BaseBuilder: IBuilder
     {
-        private readonly Container _container;
+        private readonly Injectionist _container;
         private readonly BaseBuilder _innerBuilder;
 
-        protected BaseBuilder(Container container)
+        protected BaseBuilder(Injectionist container)
         {
             _container = container;
         }
@@ -17,12 +17,12 @@ namespace Contiva.CloudInit.ConfigDrive.Generator
             _innerBuilder = innerBuilder as BaseBuilder;
         }
 
-        protected Container Container => _container ?? _innerBuilder.Container;
+        protected Injectionist Container => _container ?? _innerBuilder.Container;
 
 
         public virtual BaseBuilder With<T>(T instance) where T : class
         {
-            Container.RegisterInstance(instance);
+            Container.Register(c=> instance);
             return this;
         }
 
@@ -30,19 +30,17 @@ namespace Contiva.CloudInit.ConfigDrive.Generator
         {
             PrepareBuild();
 
-            Container.RegisterConditional<IConfigDriveGenerator, ConfigDriveGenerator>(c => !c.Handled);
-            Container.RegisterConditional(typeof(ICommandHandler<>), typeof(DummyCommandHandler<>), c => !c.Handled);
+            if (!Container.Has<IConfigDriveGenerator>())
+                throw new CloudInitConfigurationException("No Config Drive Generator has been configured");
 
-            Container.Verify();
-
-            return Container.GetInstance<IConfigDriveGenerator>();
+            return Container.Get<IConfigDriveGenerator>().Instance;
 
         }
 
-       
         protected virtual void PrepareBuild()
         {
             _innerBuilder?.PrepareBuild();
         }
     }
+
 }

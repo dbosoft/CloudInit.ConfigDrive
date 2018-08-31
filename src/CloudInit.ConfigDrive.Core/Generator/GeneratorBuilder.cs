@@ -1,4 +1,5 @@
-﻿using SimpleInjector;
+﻿
+using Contiva.CloudInit.ConfigDrive.Injection;
 
 namespace Contiva.CloudInit.ConfigDrive.Generator
 {
@@ -8,11 +9,11 @@ namespace Contiva.CloudInit.ConfigDrive.Generator
 
         public static GeneratorBuilder Init()
         {
-            var container = new Container();
+            var container = new Injectionist();
             return new GeneratorBuilder(container);
         }
 
-        protected GeneratorBuilder(Container container) : base(container)
+        protected GeneratorBuilder(Injectionist container) : base(container)
         {
         }
 
