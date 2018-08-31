@@ -2,8 +2,7 @@
 
 CloudInit.ConfigDrive is a .NET library to generate [cloud-init](https://cloud-init.io/) configuration disks.
 
-[![Build status](https://contiva.visualstudio.com/Internal/_apis/build/status/ConfigDrive.CloudInit)](https://contiva.visualstudio.com/Internal/_build/latest?definitionId=20)
-
+[![Build status](https://contiva.visualstudio.com/Internal/_apis/build/status/ConfigDrive.CloudInit)]
 
 ## Versioning
 
