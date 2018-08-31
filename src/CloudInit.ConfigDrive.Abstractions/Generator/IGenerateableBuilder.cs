@@ -1,6 +1,6 @@
 ﻿namespace Contiva.CloudInit.ConfigDrive.Generator
 {
-    public interface IGenerateableBuilder
+    public interface IGenerateableBuilder : IBuilder
     {
         void Generate();
     }

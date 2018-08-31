@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "GenConfigDrive": {
+      "commandName": "Project",
+      "commandLineArgs": "--hostname test"
+    }
+  }
+}

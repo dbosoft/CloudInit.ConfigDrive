@@ -2,13 +2,12 @@
 using System.IO;
 using System.Text;
 using CommandLine;
-using Contiva.CloudInit.ConfigDrive;
 using Contiva.CloudInit.ConfigDrive.Generator;
 using Contiva.CloudInit.ConfigDrive.NoCloud;
 using Contiva.CloudInit.ConfigDrive.Processing;
 using Newtonsoft.Json.Linq;
 
-namespace NewCloudInitConfigDrive
+namespace Contiva.CloudInit.ConfigDrive
 {
     class Program
     {

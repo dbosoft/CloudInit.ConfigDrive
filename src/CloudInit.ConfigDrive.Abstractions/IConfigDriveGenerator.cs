@@ -1,4 +1,4 @@
-﻿namespace Contiva.CloudInit.ConfigDrive.Generator
+﻿namespace Contiva.CloudInit.ConfigDrive
 {
     public interface IConfigDriveGenerator
     {
