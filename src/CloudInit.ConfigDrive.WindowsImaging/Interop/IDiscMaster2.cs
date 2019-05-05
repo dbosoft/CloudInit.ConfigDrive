@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Runtime.InteropServices;
 
-namespace Contiva.CloudInit.ConfigDrive.Interop
+namespace Haipa.CloudInit.ConfigDrive.Interop
 {
     [TypeLibType(TypeLibTypeFlags.FDual |
                  TypeLibTypeFlags.FDispatchable |

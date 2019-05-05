@@ -1,4 +1,4 @@
-﻿namespace Contiva.CloudInit.ConfigDrive
+﻿namespace Haipa.CloudInit.ConfigDrive
 {
     public struct ConfigDriveProxySettings
     {

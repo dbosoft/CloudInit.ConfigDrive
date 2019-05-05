@@ -4,7 +4,7 @@
 using System;
 using System.Collections;
 
-namespace Contiva.CloudInit.ConfigDrive.Injection
+namespace Haipa.CloudInit.ConfigDrive.Injection
 {
     /// <summary>
     /// Contains a built object instance along with all the objects that were used to build the instance

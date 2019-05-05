@@ -1,6 +1,6 @@
 using System.Runtime.InteropServices;
 
-namespace Contiva.CloudInit.ConfigDrive.Interop
+namespace Haipa.CloudInit.ConfigDrive.Interop
 {
     [CoClass(typeof(MsftBootOptionsClass)), ComImport]
     [Guid("2C941FD4-975B-59BE-A960-9A2A262853A5")]

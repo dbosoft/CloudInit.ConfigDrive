@@ -1,11 +1,12 @@
 ﻿using System;
-#if NET45
 using System.Runtime.Serialization;
+#if NET45
+
 #elif NETSTANDARD2_0
 using System.Runtime.Serialization;
 #endif
 
-namespace Contiva.CloudInit.ConfigDrive
+namespace Haipa.CloudInit.ConfigDrive
 {
 #if NET45
     [Serializable]

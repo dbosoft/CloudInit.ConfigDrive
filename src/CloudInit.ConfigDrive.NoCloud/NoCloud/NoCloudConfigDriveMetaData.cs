@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Contiva.CloudInit.ConfigDrive.NoCloud
+namespace Haipa.CloudInit.ConfigDrive.NoCloud
 {
     public struct NoCloudConfigDriveMetaData
     {

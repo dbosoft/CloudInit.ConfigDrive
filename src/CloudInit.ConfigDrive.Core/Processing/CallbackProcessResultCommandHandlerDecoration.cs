@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Contiva.CloudInit.ConfigDrive.Processing
+namespace Haipa.CloudInit.ConfigDrive.Processing
 {
     internal class CallbackProcessResultCommandHandlerDecoration : ICommandHandler<ProcessResultCommand>
     {

@@ -1,6 +1,6 @@
 ﻿using System.IO;
 
-namespace Contiva.CloudInit.ConfigDrive
+namespace Haipa.CloudInit.ConfigDrive
 {
     public class ResultFile
     {

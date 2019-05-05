@@ -4,7 +4,7 @@
 using System;
 
 #pragma warning disable 1591
-namespace Contiva.CloudInit.ConfigDrive.Interop
+namespace Haipa.CloudInit.ConfigDrive.Interop
 {
     [Flags]
     public enum FsiFileSystems

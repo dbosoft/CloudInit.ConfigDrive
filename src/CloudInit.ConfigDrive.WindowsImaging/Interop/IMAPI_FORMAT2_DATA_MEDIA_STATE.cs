@@ -3,7 +3,7 @@
 
 using System.Runtime.InteropServices;
 
-namespace Contiva.CloudInit.ConfigDrive.Interop
+namespace Haipa.CloudInit.ConfigDrive.Interop
 {
     public enum IMAPI_FORMAT2_DATA_MEDIA_STATE
     {

@@ -1,7 +1,7 @@
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
-namespace Contiva.CloudInit.ConfigDrive.Interop
+namespace Haipa.CloudInit.ConfigDrive.Interop
 {
     [TypeLibType(4480)]
     [Guid("2735413C-7F64-5B0F-8F00-5D77AFBE261E"), ComImport]

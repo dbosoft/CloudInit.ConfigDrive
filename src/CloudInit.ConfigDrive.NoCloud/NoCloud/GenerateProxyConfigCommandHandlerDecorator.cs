@@ -1,7 +1,7 @@
 ﻿using System.Text;
 using Newtonsoft.Json.Linq;
 
-namespace Contiva.CloudInit.ConfigDrive.NoCloud
+namespace Haipa.CloudInit.ConfigDrive.NoCloud
 {
     internal class GenerateProxyConfigCommandHandlerDecorator : ICommandHandler<GenerateUserDataCommand>
     {

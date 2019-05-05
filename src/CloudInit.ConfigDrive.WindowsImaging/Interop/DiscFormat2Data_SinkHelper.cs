@@ -22,7 +22,7 @@ using System.Runtime.InteropServices;
 #pragma warning disable 1584,1711,1572,1581,1580
 #pragma warning disable 1591
 
-namespace Contiva.CloudInit.ConfigDrive.Interop
+namespace Haipa.CloudInit.ConfigDrive.Interop
 {
     // Interfaces
 

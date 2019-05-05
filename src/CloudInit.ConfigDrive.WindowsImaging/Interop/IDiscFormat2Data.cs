@@ -5,7 +5,7 @@ using System.Runtime.InteropServices.ComTypes;
 // ReSharper disable InconsistentNaming
 // ReSharper disable UnusedMember.Global
 
-namespace Contiva.CloudInit.ConfigDrive.Interop
+namespace Haipa.CloudInit.ConfigDrive.Interop
 {
     [TypeLibType(TypeLibTypeFlags.FDual |
                  TypeLibTypeFlags.FDispatchable |

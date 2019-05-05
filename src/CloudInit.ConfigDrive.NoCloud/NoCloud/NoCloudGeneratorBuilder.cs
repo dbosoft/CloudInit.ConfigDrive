@@ -1,8 +1,8 @@
-﻿using Contiva.CloudInit.ConfigDrive.Generator;
-using Contiva.CloudInit.ConfigDrive.Processing;
+﻿using Haipa.CloudInit.ConfigDrive.Generator;
+using Haipa.CloudInit.ConfigDrive.Processing;
 using Newtonsoft.Json.Linq;
 
-namespace Contiva.CloudInit.ConfigDrive.NoCloud
+namespace Haipa.CloudInit.ConfigDrive.NoCloud
 {
     public class NoCloudGeneratorBuilder : GenerateableBuilder, IProcessableBuilder
     {

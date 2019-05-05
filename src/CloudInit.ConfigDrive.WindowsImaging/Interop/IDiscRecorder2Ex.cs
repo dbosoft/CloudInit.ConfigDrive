@@ -4,7 +4,7 @@ using System.Runtime.InteropServices;
 // ReSharper disable UnusedMember.Global
 #pragma warning disable 1584,1711,1572,1581,1580
 
-namespace Contiva.CloudInit.ConfigDrive.Interop
+namespace Haipa.CloudInit.ConfigDrive.Interop
 {
     [InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     [Guid("27354132-7F64-5B0F-8F00-5D77AFBE261E")]
