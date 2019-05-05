@@ -2,17 +2,18 @@
 
   <PropertyGroup>
     <TargetFrameworks>net45;netstandard1.3;netstandard2.0</TargetFrameworks>
-    <AssemblyName>Contiva.CloudInit.ConfigDrive</AssemblyName>
-    <RootNamespace>Contiva.CloudInit.ConfigDrive</RootNamespace>
+    <AssemblyName>Haipa.CloudInit.ConfigDrive</AssemblyName>
+    <RootNamespace>Haipa.CloudInit.ConfigDrive</RootNamespace>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-    <PackageLicenseUrl>https://github.com/contiva/CloudInit.ConfigDrive/blob/master/LICENSE</PackageLicenseUrl>
-    <PackageProjectUrl>https://github.com/contiva/CloudInit.ConfigDrive</PackageProjectUrl>
-    <Copyright>Contiva</Copyright>
-    <Authors>Contiva</Authors>
-    <Company>Contiva</Company>
-    <Product>Contiva.CloudInit.ConfigDrive</Product>
-    <RepositoryUrl>https://github.com/contiva/CloudInit.ConfigDrive</RepositoryUrl>
+    <PackageLicenseUrl>https://github.com/haipa/CloudInit.ConfigDrive/blob/master/LICENSE</PackageLicenseUrl>
+    <PackageProjectUrl>https://github.com/haipa/CloudInit.ConfigDrive</PackageProjectUrl>
+    <Copyright>Haipa Project</Copyright>
+    <Authors>Haipa Project</Authors>
+    <Company>Haipa Project</Company>
+    <Product>Haipa.CloudInit.ConfigDrive</Product>
+    <RepositoryUrl>https://github.com/haipa/CloudInit.ConfigDrive</RepositoryUrl>
+    <PackageId>Haipa.CloudInit.ConfigDrive</PackageId>
   </PropertyGroup>
 
   <ItemGroup>
