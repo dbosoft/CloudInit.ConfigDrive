@@ -1,6 +1,6 @@
 using System;
 
-namespace Contiva.CloudInit.ConfigDrive.Interop
+namespace Haipa.CloudInit.ConfigDrive.Interop
 {
     [Flags]
     public enum FsiItemType

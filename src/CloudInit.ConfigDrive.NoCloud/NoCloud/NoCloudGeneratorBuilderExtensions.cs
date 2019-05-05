@@ -1,6 +1,6 @@
-﻿using Contiva.CloudInit.ConfigDrive.Generator;
+﻿using Haipa.CloudInit.ConfigDrive.Generator;
 
-namespace Contiva.CloudInit.ConfigDrive.NoCloud
+namespace Haipa.CloudInit.ConfigDrive.NoCloud
 {
     public static class NoCloudGeneratorBuilderExtensions
     {

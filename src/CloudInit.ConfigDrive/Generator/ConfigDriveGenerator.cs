@@ -1,6 +1,6 @@
-﻿using Contiva.CloudInit.ConfigDrive.Processing;
+﻿using Haipa.CloudInit.ConfigDrive.Processing;
 
-namespace Contiva.CloudInit.ConfigDrive.Generator
+namespace Haipa.CloudInit.ConfigDrive.Generator
 {
     class ConfigDriveGenerator : IConfigDriveGenerator
     {

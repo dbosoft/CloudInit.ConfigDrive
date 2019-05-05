@@ -6,7 +6,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Contiva.CloudInit.ConfigDrive.Injection
+namespace Haipa.CloudInit.ConfigDrive.Injection
 {
     /// <summary>
     /// Dependency injectionist that can be used for configuring a system of injected service implementations, possibly with decorators,

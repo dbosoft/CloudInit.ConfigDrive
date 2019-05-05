@@ -1,7 +1,6 @@
-﻿using Contiva.CloudInit.ConfigDrive.Generator;
-using Contiva.CloudInit.ConfigDrive.Injection;
+﻿using Haipa.CloudInit.ConfigDrive.Injection;
 
-namespace Contiva.CloudInit.ConfigDrive
+namespace Haipa.CloudInit.ConfigDrive
 {
     public class BaseBuilder: IBuilder
     {

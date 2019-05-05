@@ -1,4 +1,4 @@
-﻿namespace Contiva.CloudInit.ConfigDrive.Generator
+﻿namespace Haipa.CloudInit.ConfigDrive.Generator
 {
     public interface IGenerateableBuilder : IBuilder
     {

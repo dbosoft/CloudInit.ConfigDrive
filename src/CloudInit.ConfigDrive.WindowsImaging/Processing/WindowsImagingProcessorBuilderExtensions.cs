@@ -1,4 +1,4 @@
-﻿namespace Contiva.CloudInit.ConfigDrive.Processing
+﻿namespace Haipa.CloudInit.ConfigDrive.Processing
 {
     public static class WindowsImagingProcessorBuilderExtensions
     {

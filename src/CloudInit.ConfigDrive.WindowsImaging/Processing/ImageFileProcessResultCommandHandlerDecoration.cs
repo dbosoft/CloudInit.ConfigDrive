@@ -1,6 +1,6 @@
 ﻿using System.IO;
 
-namespace Contiva.CloudInit.ConfigDrive.Processing
+namespace Haipa.CloudInit.ConfigDrive.Processing
 {
     internal class ImageFileProcessResultCommandHandlerDecoration : ICommandHandler<ProcessResultCommand>
     {

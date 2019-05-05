@@ -2,13 +2,14 @@
 // source: https://raw.githubusercontent.com/rebus-org/Rebus/master/Rebus/Injection/ResolutionException.cs
 
 using System;
-#if NET45
 using System.Runtime.Serialization;
+#if NET45
+
 #elif NETSTANDARD2_0
 using System.Runtime.Serialization;
 #endif
 
-namespace Contiva.CloudInit.ConfigDrive.Injection
+namespace Haipa.CloudInit.ConfigDrive.Injection
 {
     /// <summary>
     /// Exceptions that is thrown when something goes wrong while working with the injectionist

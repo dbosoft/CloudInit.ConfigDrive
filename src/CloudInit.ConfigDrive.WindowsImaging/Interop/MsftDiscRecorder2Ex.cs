@@ -1,6 +1,6 @@
 using System.Runtime.InteropServices;
 
-namespace Contiva.CloudInit.ConfigDrive.Interop
+namespace Haipa.CloudInit.ConfigDrive.Interop
 {
     [InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     [CoClass(typeof(MsftDiscRecorder2Class)), ComImport]

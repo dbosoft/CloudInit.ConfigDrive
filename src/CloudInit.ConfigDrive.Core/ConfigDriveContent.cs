@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Contiva.CloudInit.ConfigDrive
+namespace Haipa.CloudInit.ConfigDrive
 {
     public class ConfigDriveContent
     {

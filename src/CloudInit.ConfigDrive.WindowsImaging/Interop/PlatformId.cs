@@ -1,4 +1,4 @@
-namespace Contiva.CloudInit.ConfigDrive.Interop
+namespace Haipa.CloudInit.ConfigDrive.Interop
 {
     public enum PlatformId
     {
