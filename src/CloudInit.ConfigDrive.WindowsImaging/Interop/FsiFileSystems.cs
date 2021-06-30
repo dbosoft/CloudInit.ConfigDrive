@@ -1,10 +1,14 @@
+// copyright dbosoft GmbH / licensed under MIT license
+// based on sample code by Microsoft Windows SDK samples 
+// https://github.com/microsoft/Windows-classic-samples/blob/master/Samples/Win7Samples/winbase/imapi/interop/IMAPIv2.cs
+
 // ReSharper disable UnusedMember.Global
 // ReSharper disable InconsistentNaming
 
 using System;
 
 #pragma warning disable 1591
-namespace Haipa.CloudInit.ConfigDrive.Interop
+namespace Dbosoft.CloudInit.ConfigDrive.Interop
 {
     [Flags]
     public enum FsiFileSystems

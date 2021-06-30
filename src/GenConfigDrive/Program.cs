@@ -2,16 +2,18 @@
 using System.IO;
 using System.Text;
 using CommandLine;
-using Haipa.CloudInit.ConfigDrive.Generator;
-using Haipa.CloudInit.ConfigDrive.NoCloud;
-using Haipa.CloudInit.ConfigDrive.Processing;
+using Dbosoft.CloudInit.ConfigDrive.NoCloud;
+using Dbosoft.CloudInit.ConfigDrive.Processing;
+using Dosoft.CloudInit.ConfigDrive.Generator;
+using Dosoft.CloudInit.ConfigDrive.Processing;
+using JetBrains.Annotations;
 using Newtonsoft.Json.Linq;
 
-namespace Haipa.CloudInit.ConfigDrive
+namespace Dbosoft.CloudInit.ConfigDrive
 {
-    class Program
+    public static class Program
     {
-        static int Main(string[] args)
+        public static int Main(string[] args)
         {
             return Parser.Default.ParseArguments<NoCloudOptions>(args)
                 .MapResult(
@@ -80,7 +82,8 @@ namespace Haipa.CloudInit.ConfigDrive
     }
 
     [Verb("NoCloud", HelpText = "Generate a NoCloud cloud-init disk")]
-    class NoCloudOptions
+    [UsedImplicitly(ImplicitUseTargetFlags.Members)]
+    internal class NoCloudOptions
     {
         [Option(HelpText = "Path to cloud-init user data")]
         public string UserData { get; set; }

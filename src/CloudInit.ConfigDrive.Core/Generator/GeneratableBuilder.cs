@@ -1,6 +1,6 @@
-﻿using Haipa.CloudInit.ConfigDrive.Injection;
+﻿using Dbosoft.CloudInit.ConfigDrive.Injection;
 
-namespace Haipa.CloudInit.ConfigDrive.Generator
+namespace Dbosoft.CloudInit.ConfigDrive.Generator
 {
     public class GenerateableBuilder : BaseBuilder, IGenerateableBuilder
     {

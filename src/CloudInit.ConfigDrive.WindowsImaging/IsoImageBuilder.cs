@@ -1,11 +1,11 @@
 ﻿using System;
 using System.IO;
 using System.Runtime.InteropServices;
-using Haipa.CloudInit.ConfigDrive.Interop;
+using Dbosoft.CloudInit.ConfigDrive.Interop;
 
 // ReSharper disable UnusedMember.Global
 
-namespace Haipa.CloudInit.ConfigDrive
+namespace Dbosoft.CloudInit.ConfigDrive
 {
     [ClassInterface(ClassInterfaceType.None)]
     internal sealed class IsoImageBuilder

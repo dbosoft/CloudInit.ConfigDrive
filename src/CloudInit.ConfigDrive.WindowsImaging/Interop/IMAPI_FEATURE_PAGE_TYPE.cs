@@ -1,6 +1,11 @@
+// copyright dbosoft GmbH / licensed under MIT license
+// based on sample code by Microsoft Windows SDK samples 
+// https://github.com/microsoft/Windows-classic-samples/blob/master/Samples/Win7Samples/winbase/imapi/interop/IMAPIv2.cs
+
+
 // ReSharper disable InconsistentNaming
 // ReSharper disable UnusedMember.Global
-namespace Haipa.CloudInit.ConfigDrive.Interop
+namespace Dbosoft.CloudInit.ConfigDrive.Interop
 {
     public enum IMAPI_FEATURE_PAGE_TYPE
     {

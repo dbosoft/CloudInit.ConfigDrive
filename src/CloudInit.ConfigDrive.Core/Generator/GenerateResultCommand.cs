@@ -1,4 +1,4 @@
-﻿namespace Haipa.CloudInit.ConfigDrive.Generator
+﻿namespace Dbosoft.CloudInit.ConfigDrive.Generator
 {
     public class GenerateResultCommand
     {

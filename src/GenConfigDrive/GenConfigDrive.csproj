@@ -2,8 +2,8 @@
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-    <TargetFramework>net471</TargetFramework>
-    <RootNamespace>Haipa.CloudInit.ConfigDrive</RootNamespace>
+    <TargetFrameworks>net471;net5.0-windows</TargetFrameworks>
+    <RootNamespace>Dbosoft.CloudInit.ConfigDrive</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>
@@ -12,6 +12,7 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
     </PackageReference>
+    <PackageReference Include="JetBrains.Annotations" Version="2021.1.0" />
   </ItemGroup>
 
   <ItemGroup>

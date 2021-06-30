@@ -1,8 +1,8 @@
-﻿using Haipa.CloudInit.ConfigDrive.Generator;
-using Haipa.CloudInit.ConfigDrive.Processing;
+﻿using Dbosoft.CloudInit.ConfigDrive.Generator;
+using Dbosoft.CloudInit.ConfigDrive.Processing;
 using Newtonsoft.Json.Linq;
 
-namespace Haipa.CloudInit.ConfigDrive.NoCloud
+namespace Dbosoft.CloudInit.ConfigDrive.NoCloud
 {
     public class NoCloudGeneratorBuilder : GenerateableBuilder, IProcessableBuilder
     {
