@@ -1,6 +1,4 @@
-﻿using Dbosoft.CloudInit.ConfigDrive.Processing;
-
-namespace Dosoft.CloudInit.ConfigDrive.Processing
+﻿namespace Dbosoft.CloudInit.ConfigDrive.Processing
 {
     public static class ProcessingBuilderExtensions
     {
