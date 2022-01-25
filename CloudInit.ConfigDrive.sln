@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.27428.2015
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31410.357
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GenConfigDrive", "src\GenConfigDrive\GenConfigDrive.csproj", "{A71DAC22-FD4F-476C-B694-70FD07413AC7}"
 EndProject
@@ -14,6 +14,11 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CloudInit.ConfigDrive", "src\CloudInit.ConfigDrive\CloudInit.ConfigDrive.csproj", "{F393029E-52DF-44C3-818D-94B71807E335}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CloudInit.ConfigDrive.NoCloud", "src\CloudInit.ConfigDrive.NoCloud\CloudInit.ConfigDrive.NoCloud.csproj", "{1B4A5A68-A987-4B31-BAC6-20F130B6C171}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{70C39639-242A-453A-B07B-AAB22AE4207F}"
+	ProjectSection(SolutionItems) = preProject
+		gitversion.yml = gitversion.yml
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

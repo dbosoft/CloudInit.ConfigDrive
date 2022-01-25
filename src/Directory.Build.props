@@ -4,7 +4,7 @@
     <PackageOutputPath>..\..\build-packages</PackageOutputPath>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageProjectUrl>https://github.com/dbosoft/CloudInit.ConfigDrive</PackageProjectUrl>
-    <Copyright>Library created by dbosoft; SAP, Netweaver are trademarks of SAP SE</Copyright>
+    <Copyright>Copyright (c) dbosoft GmbH. All rights reserved.</Copyright>
     <Authors>dbosoft</Authors>
     <Company>dbosoft GmbH</Company>
     <Product>CloudInit.ConfigDrive</Product>

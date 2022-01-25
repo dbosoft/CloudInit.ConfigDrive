@@ -2,10 +2,9 @@
 using System.IO;
 using System.Text;
 using CommandLine;
+using Dbosoft.CloudInit.ConfigDrive.Generator;
 using Dbosoft.CloudInit.ConfigDrive.NoCloud;
 using Dbosoft.CloudInit.ConfigDrive.Processing;
-using Dosoft.CloudInit.ConfigDrive.Generator;
-using Dosoft.CloudInit.ConfigDrive.Processing;
 using JetBrains.Annotations;
 using Newtonsoft.Json.Linq;
 
