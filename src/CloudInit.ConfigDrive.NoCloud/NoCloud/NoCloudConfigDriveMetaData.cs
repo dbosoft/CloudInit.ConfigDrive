@@ -1,7 +1,9 @@
 ﻿using System;
+using JetBrains.Annotations;
 
-namespace Haipa.CloudInit.ConfigDrive.NoCloud
+namespace Dbosoft.CloudInit.ConfigDrive.NoCloud
 {
+    [PublicAPI]
     public struct NoCloudConfigDriveMetaData
     {
         public string HostName { get; set; }

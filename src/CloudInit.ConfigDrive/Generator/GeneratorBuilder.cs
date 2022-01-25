@@ -1,7 +1,9 @@
-﻿using Haipa.CloudInit.ConfigDrive.Injection;
-using Haipa.CloudInit.ConfigDrive.Processing;
+﻿using Dbosoft.CloudInit.ConfigDrive;
+using Dbosoft.CloudInit.ConfigDrive.Generator;
+using Dbosoft.CloudInit.ConfigDrive.Injection;
+using Dbosoft.CloudInit.ConfigDrive.Processing;
 
-namespace Haipa.CloudInit.ConfigDrive.Generator
+namespace Dosoft.CloudInit.ConfigDrive.Generator
 {
 
     public class GeneratorBuilder : GenerateableBuilder
@@ -18,11 +20,11 @@ namespace Haipa.CloudInit.ConfigDrive.Generator
             return new GeneratorBuilder(container);
         }
 
-        protected GeneratorBuilder(Injectionist container) : base(container)
+        private GeneratorBuilder(Injectionist container) : base(container)
         {
         }
 
-        protected GeneratorBuilder(BaseBuilder innerBuilder): base(innerBuilder)
+        protected GeneratorBuilder(IBuilder innerBuilder): base(innerBuilder)
         {
         }
 

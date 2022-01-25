@@ -1,5 +1,9 @@
-﻿namespace Haipa.CloudInit.ConfigDrive
+﻿using JetBrains.Annotations;
+
+namespace Dbosoft.CloudInit.ConfigDrive
 {
+    
+    [PublicAPI]
     public struct ConfigDriveProxySettings
     {
         public string HttpProxy { get; set; }

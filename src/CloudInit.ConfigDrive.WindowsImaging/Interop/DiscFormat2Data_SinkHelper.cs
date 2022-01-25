@@ -1,22 +1,13 @@
-/*-----------------------------------------------------------------------*
- * This file is part of the Microsoft IMAPIv2 Code Samples.              *
- *                                                                       *
- * Copyright (C) Microsoft Corporation.  All rights reserved.            *
- *                                                                       *
- * This source code is intended only as a supplement to Microsoft IMAPI2 *
- * help and/or on-line documentation.  See these other materials for     *
- * detailed information regarding Microsoft code samples.                *
- *                                                                       *
- * THIS CODE AND INFORMATION ARE PROVIDED AS IS WITHOUT WARRANTY OF ANY  *
- * KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE   *
- * IMPLIED WARRANTIES OF MERCHANTABILITY AND/OR FITNESS FOR A PARTICULAR *
- * PURPOSE.                                                              *
- *-----------------------------------------------------------------------*/
+// copyright dbosoft GmbH / licensed under MIT license
+// based on sample code by Microsoft Windows SDK samples 
+// https://github.com/microsoft/Windows-classic-samples/blob/master/Samples/Win7Samples/winbase/imapi/interop/IMAPIv2.cs
+
 
 // ReSharper disable All
 
 using System;
 using System.Runtime.InteropServices;
+using Dbosoft.CloudInit.ConfigDrive.Interop;
 
 #pragma warning disable 1573
 #pragma warning disable 1584,1711,1572,1581,1580

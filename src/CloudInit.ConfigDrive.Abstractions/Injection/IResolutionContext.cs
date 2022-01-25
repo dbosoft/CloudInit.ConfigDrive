@@ -3,7 +3,7 @@
 
 using System.Collections;
 
-namespace Haipa.CloudInit.ConfigDrive.Injection
+namespace Dbosoft.CloudInit.ConfigDrive.Injection
 {
     /// <summary>
     /// Represents the context of resolving one root service and can be used throughout the tree to fetch something to be injected

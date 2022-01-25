@@ -1,10 +1,15 @@
+// copyright dbosoft GmbH / licensed under MIT license
+// based on sample code by Microsoft Windows SDK samples 
+// https://github.com/microsoft/Windows-classic-samples/blob/master/Samples/Win7Samples/winbase/imapi/interop/IMAPIv2.cs
+
+
 using System;
 using System.Runtime.InteropServices;
 
 // ReSharper disable UnusedMember.Global
 #pragma warning disable 1584,1711,1572,1581,1580
 
-namespace Haipa.CloudInit.ConfigDrive.Interop
+namespace Dbosoft.CloudInit.ConfigDrive.Interop
 {
     [InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     [Guid("27354132-7F64-5B0F-8F00-5D77AFBE261E")]

@@ -1,4 +1,4 @@
-﻿namespace Haipa.CloudInit.ConfigDrive
+﻿namespace Dbosoft.CloudInit.ConfigDrive
 {
     public interface IConfigDriveGenerator
     {

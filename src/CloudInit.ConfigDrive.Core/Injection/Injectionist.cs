@@ -5,8 +5,9 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using JetBrains.Annotations;
 
-namespace Haipa.CloudInit.ConfigDrive.Injection
+namespace Dbosoft.CloudInit.ConfigDrive.Injection
 {
     /// <summary>
     /// Dependency injectionist that can be used for configuring a system of injected service implementations, possibly with decorators,
@@ -24,7 +25,7 @@ namespace Haipa.CloudInit.ConfigDrive.Injection
 
             public Resolver PrimaryResolver { get; private set; }
 
-            public List<Resolver> Decorators { get; private set; }
+            public List<Resolver> Decorators { get; }
 
             void AddDecorator(Resolver resolver)
             {
@@ -58,7 +59,7 @@ namespace Haipa.CloudInit.ConfigDrive.Injection
         {
             var resolutionContext = new ResolutionContext(_resolvers, ResolveRequested);
             var instance = resolutionContext.Get<TService>();
-            return new ResolutionResult<TService>(instance, resolutionContext.TrackedInstances);
+            return new ResolutionResult<TService>(instance);
         }
 
         /// <summary>
@@ -128,11 +129,9 @@ namespace Haipa.CloudInit.ConfigDrive.Injection
             handler.AddResolver(resolver);
         }
 
-        Handler GetOrCreateHandler<TService>()
+        private Handler GetOrCreateHandler<TService>()
         {
-            Handler handler;
-
-            if (_resolvers.TryGetValue(typeof(TService), out handler)) return handler;
+            if (_resolvers.TryGetValue(typeof(TService), out var handler)) return handler;
 
             handler = new Handler();
             _resolvers[typeof(TService)] = handler;
@@ -147,7 +146,7 @@ namespace Haipa.CloudInit.ConfigDrive.Injection
                 IsDecorator = isDecorator;
             }
 
-            public bool IsDecorator { get; private set; }
+            public bool IsDecorator { get; }
         }
 
         class Resolver<TService> : Resolver
@@ -201,9 +200,7 @@ namespace Haipa.CloudInit.ConfigDrive.Injection
             {
                 var serviceType = typeof(TService);
 
-                object existingInstance;
-
-                if (_instances.TryGetValue(serviceType, out existingInstance))
+                if (_instances.TryGetValue(serviceType, out var existingInstance))
                 {
                     return (TService)existingInstance;
                 }

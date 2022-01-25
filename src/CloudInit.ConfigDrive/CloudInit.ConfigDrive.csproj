@@ -1,19 +1,9 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>net45;netstandard1.3;netstandard2.0</TargetFrameworks>
-    <AssemblyName>Haipa.CloudInit.ConfigDrive</AssemblyName>
-    <RootNamespace>Haipa.CloudInit.ConfigDrive</RootNamespace>
-    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-    <PackageLicenseUrl>https://github.com/haipa/CloudInit.ConfigDrive/blob/master/LICENSE</PackageLicenseUrl>
-    <PackageProjectUrl>https://github.com/haipa/CloudInit.ConfigDrive</PackageProjectUrl>
-    <Copyright>Haipa Project</Copyright>
-    <Authors>Haipa Project</Authors>
-    <Company>Haipa Project</Company>
-    <Product>Haipa.CloudInit.ConfigDrive</Product>
-    <RepositoryUrl>https://github.com/haipa/CloudInit.ConfigDrive</RepositoryUrl>
-    <PackageId>Haipa.CloudInit.ConfigDrive</PackageId>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <AssemblyName>Dbosoft.CloudInit.ConfigDrive</AssemblyName>
+    <RootNamespace>Dosoft.CloudInit.ConfigDrive</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>
@@ -21,10 +11,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="GitVersionTask" Version="4.0.0">
+    <PackageReference Include="GitVersion.MsBuild" Version="5.6.10">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
     </PackageReference>
+    <PackageReference Include="JetBrains.Annotations" Version="2021.1.0" />
   </ItemGroup>
 
 </Project>
