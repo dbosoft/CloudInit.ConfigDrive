@@ -3,7 +3,7 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <AssemblyName>Dbosoft.CloudInit.ConfigDrive</AssemblyName>
-    <RootNamespace>Dosoft.CloudInit.ConfigDrive</RootNamespace>
+    <RootNamespace>Dbosoft.CloudInit.ConfigDrive</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>

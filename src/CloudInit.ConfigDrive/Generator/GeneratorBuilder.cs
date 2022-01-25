@@ -1,9 +1,7 @@
-﻿using Dbosoft.CloudInit.ConfigDrive;
-using Dbosoft.CloudInit.ConfigDrive.Generator;
-using Dbosoft.CloudInit.ConfigDrive.Injection;
+﻿using Dbosoft.CloudInit.ConfigDrive.Injection;
 using Dbosoft.CloudInit.ConfigDrive.Processing;
 
-namespace Dosoft.CloudInit.ConfigDrive.Generator
+namespace Dbosoft.CloudInit.ConfigDrive.Generator
 {
 
     public class GeneratorBuilder : GenerateableBuilder

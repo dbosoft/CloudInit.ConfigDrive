@@ -4,6 +4,7 @@
     <OutputType>Exe</OutputType>
     <TargetFrameworks>net471;net5.0-windows</TargetFrameworks>
     <RootNamespace>Dbosoft.CloudInit.ConfigDrive</RootNamespace>
+    <AssemblyName>cloud-init-cd</AssemblyName>
   </PropertyGroup>
 
   <ItemGroup>
