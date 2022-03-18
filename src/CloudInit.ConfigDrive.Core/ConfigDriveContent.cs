@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Haipa.CloudInit.ConfigDrive
+namespace Dbosoft.CloudInit.ConfigDrive
 {
     public class ConfigDriveContent
     {

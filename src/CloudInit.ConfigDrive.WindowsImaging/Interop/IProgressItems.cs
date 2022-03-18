@@ -1,3 +1,8 @@
+// copyright dbosoft GmbH / licensed under MIT license
+// based on sample code by Microsoft Windows SDK samples 
+// https://github.com/microsoft/Windows-classic-samples/blob/master/Samples/Win7Samples/winbase/imapi/interop/IMAPIv2.cs
+
+
 // ReSharper disable UnusedMember.Global
 // ReSharper disable InconsistentNaming
 
@@ -5,7 +10,7 @@
 using System.Collections;
 using System.Runtime.InteropServices;
 
-namespace Haipa.CloudInit.ConfigDrive.Interop
+namespace Dbosoft.CloudInit.ConfigDrive.Interop
 {
     [TypeLibType(TypeLibTypeFlags.FDual |
                  TypeLibTypeFlags.FDispatchable |

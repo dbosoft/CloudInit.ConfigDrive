@@ -1,16 +1,15 @@
-﻿using System;
-using System.Runtime.Serialization;
-#if NET45
+﻿#if NET45
 
-#elif NETSTANDARD2_0
+#elif NETSTANDARD
 using System.Runtime.Serialization;
 #endif
+using System;
 
-namespace Haipa.CloudInit.ConfigDrive
+namespace Dbosoft.CloudInit.ConfigDrive
 {
 #if NET45
     [Serializable]
-#elif NETSTANDARD2_0
+#elif NETSTANDARD
     [Serializable]
 #endif
     public class CloudInitConfigurationException : Exception

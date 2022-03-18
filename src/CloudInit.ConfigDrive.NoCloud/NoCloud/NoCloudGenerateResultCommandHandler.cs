@@ -1,13 +1,13 @@
 ﻿using System.Dynamic;
 using System.IO;
 using System.Text;
-using Haipa.CloudInit.ConfigDrive.Generator;
+using Dbosoft.CloudInit.ConfigDrive.Generator;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using Newtonsoft.Json.Linq;
 using YamlDotNet.Serialization;
 
-namespace Haipa.CloudInit.ConfigDrive.NoCloud
+namespace Dbosoft.CloudInit.ConfigDrive.NoCloud
 {
     internal class NoCloudGenerateResultCommandHandler : ICommandHandler<GenerateResultCommand>
     {

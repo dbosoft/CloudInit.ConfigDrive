@@ -1,6 +1,6 @@
 ﻿using System.IO;
 
-namespace Haipa.CloudInit.ConfigDrive.Processing
+namespace Dbosoft.CloudInit.ConfigDrive.Processing
 {
     internal class ImageFileProcessResultCommandHandlerDecoration : ICommandHandler<ProcessResultCommand>
     {

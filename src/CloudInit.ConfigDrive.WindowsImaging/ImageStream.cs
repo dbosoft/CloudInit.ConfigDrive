@@ -4,7 +4,7 @@ using System.IO;
 using System.Runtime.InteropServices;
 using System.Runtime.InteropServices.ComTypes;
 
-namespace Haipa.CloudInit.ConfigDrive
+namespace Dbosoft.CloudInit.ConfigDrive
 {
     /// <summary>
     /// This is a representation of an IO.Stream and IStream object. 
@@ -18,13 +18,13 @@ namespace Haipa.CloudInit.ConfigDrive
         {
             get
             {
-                if (TheIStream != null)
+                if (_imageStream != null)
                 {
                     return true;
                 }
                 else
                 {
-                    return TheStream.CanRead;
+                    return _stream.CanRead;
                 }
             }
         }
@@ -36,13 +36,13 @@ namespace Haipa.CloudInit.ConfigDrive
         {
             get
             {
-                if (TheIStream != null)
+                if (_imageStream != null)
                 {
                     return true;
                 }
                 else
                 {
-                    return TheStream.CanSeek;
+                    return _stream.CanSeek;
                 }
             }
         }
@@ -54,13 +54,13 @@ namespace Haipa.CloudInit.ConfigDrive
         {
             get
             {
-                if (TheIStream != null)
+                if (_imageStream != null)
                 {
                     return true;
                 }
                 else
                 {
-                    return TheStream.CanWrite;
+                    return _stream.CanWrite;
                 }
             }
         }
@@ -69,13 +69,13 @@ namespace Haipa.CloudInit.ConfigDrive
         {
             get
             {
-                if (TheIStream != null)
+                if (_imageStream != null)
                 {
                     return false;
                 }
                 else
                 {
-                    return TheStream.CanTimeout;
+                    return _stream.CanTimeout;
                 }
             }
         }
@@ -87,19 +87,18 @@ namespace Haipa.CloudInit.ConfigDrive
         {
             get
             {
-                if (TheIStream != null)
+                if (_imageStream != null)
                 {
                     // Call IStream.Stat to retrieve info about the stream,
                     // which includes the length. STATFLAG_NONAME means that we don't
                     // care about the name (STATSTG.pwcsName), so there is no need for
                     // the method to allocate memory for the string.
-                    System.Runtime.InteropServices.ComTypes.STATSTG statstg;
-                    TheIStream.Stat(out statstg, 1);
+                    _imageStream.Stat(out var statstg, 1);
                     return statstg.cbSize;
                 }
                 else
                 {
-                    return TheStream.Length;
+                    return _stream.Length;
                 }
             }
         }
@@ -111,24 +110,24 @@ namespace Haipa.CloudInit.ConfigDrive
         {
             get
             {
-                if (TheIStream != null)
+                if (_imageStream != null)
                 {
                     return Seek(0, SeekOrigin.Current);
                 }
                 else
                 {
-                    return TheStream.Position;
+                    return _stream.Position;
                 }
             }
             set
             {
-                if (TheIStream != null)
+                if (_imageStream != null)
                 {
                     Seek(value, SeekOrigin.Begin);
                 }
                 else
                 {
-                    TheStream.Position = value;
+                    _stream.Position = value;
                 }
             }
         }
@@ -139,13 +138,13 @@ namespace Haipa.CloudInit.ConfigDrive
         /// </summary>
         public override void Flush()
         {
-            if (TheIStream != null)
+            if (_imageStream != null)
             {
-                TheIStream.Commit(0 /*STGC_DEFAULT*/);
+                _imageStream.Commit(0 /*STGC_DEFAULT*/);
             }
             else
             {
-                TheStream.Flush();
+                _stream.Flush();
             }
         }
 
@@ -159,7 +158,7 @@ namespace Haipa.CloudInit.ConfigDrive
         /// <returns>The total number of bytes read into the buffer. This can be less than the number of bytes requested if that many bytes are not currently available, or zero (0) if the end of the stream has been reached.</returns>
         public override int Read(byte[] buffer, int offset, int count)
         {
-            if (TheIStream != null)
+            if (_imageStream != null)
             {
                 if (offset != 0) throw new NotSupportedException("Only a zero offset is supported.");
 
@@ -168,7 +167,7 @@ namespace Haipa.CloudInit.ConfigDrive
                 Marshal.WriteInt32(br, 0);
 
                 // Include try catch for c++ eh exceptions. are they the same as comexceptions?
-                TheIStream.Read(buffer, count, br);
+                _imageStream.Read(buffer, count, br);
                 bytesRead = Marshal.ReadInt32(br);
 
                 Marshal.FreeHGlobal(br);
@@ -177,7 +176,7 @@ namespace Haipa.CloudInit.ConfigDrive
             }
             else
             {
-                return TheStream.Read(buffer, offset, count);
+                return _stream.Read(buffer, offset, count);
             }
         }
 
@@ -189,7 +188,7 @@ namespace Haipa.CloudInit.ConfigDrive
         /// <returns>The new position within the current stream.</returns>
         public override long Seek(long offset, System.IO.SeekOrigin origin)
         {
-            if (TheIStream != null)
+            if (_imageStream != null)
             {
                 long position = 0;
                 var pos = Marshal.AllocHGlobal(Marshal.SizeOf(typeof(long)));
@@ -197,7 +196,7 @@ namespace Haipa.CloudInit.ConfigDrive
 
                 // The enum values of SeekOrigin match the enum values of
                 // STREAM_SEEK, so we can just cast the origin to an integer.
-                TheIStream.Seek(offset, (int)origin, pos);
+                _imageStream.Seek(offset, (int)origin, pos);
                 position = Marshal.ReadInt64(pos);
 
                 Marshal.FreeHGlobal(pos);
@@ -206,7 +205,7 @@ namespace Haipa.CloudInit.ConfigDrive
             }
             else
             {
-                return TheStream.Seek(offset, origin);
+                return _stream.Seek(offset, origin);
             }
         }
 
@@ -216,13 +215,13 @@ namespace Haipa.CloudInit.ConfigDrive
         /// <param name="value">The desired length of the current stream in bytes.</param>
         public override void SetLength(long value)
         {
-            if (TheIStream != null)
+            if (_imageStream != null)
             {
-                TheIStream.SetSize(value);
+                _imageStream.SetSize(value);
             }
             else
             {
-                TheStream.SetLength(value);
+                _stream.SetLength(value);
             }
         }
 
@@ -237,16 +236,16 @@ namespace Haipa.CloudInit.ConfigDrive
         /// <param name="count">The number of bytes to be written to the current stream.</param>
         public override void Write(byte[] buffer, int offset, int count)
         {
-            if (TheIStream != null)
+            if (_imageStream != null)
             {
                 if (offset != 0) throw new NotSupportedException("Only a zero offset is supported.");
 
                 // Pass "null" for the last parameter since we don't use the value
-                TheIStream.Write(buffer, count, IntPtr.Zero);
+                _imageStream.Write(buffer, count, IntPtr.Zero);
             }
             else
             {
-                TheStream.Write(buffer, offset, count);
+                _stream.Write(buffer, offset, count);
             }
         }
 
@@ -261,9 +260,9 @@ namespace Haipa.CloudInit.ConfigDrive
         ///<exception cref="NotSupportedException">The IO.Streamtream cannot be cloned.</exception>
         public void Clone(out IStream ppstm)
         {
-            if (TheStream != null) throw new NotSupportedException("The Stream cannot be cloned.");
+            if (_stream != null) throw new NotSupportedException("The Stream cannot be cloned.");
 
-            TheIStream.Clone(out ppstm);
+            _imageStream.Clone(out ppstm);
         }
 
         /// <summary>
@@ -280,55 +279,51 @@ namespace Haipa.CloudInit.ConfigDrive
         {
             // Clears all buffers for this stream and causes any buffered data to be written 
             // to the underlying device.
-            if (TheStream != null)
+            if (_stream != null)
             {
-                TheStream.Flush();
+                _stream.Flush();
             }
             else
             {
-                TheIStream.Commit(grfCommitFlags);
+                _imageStream.Commit(grfCommitFlags);
             }
         }
 
-        /// <summary>
-        /// Copies a specified number of bytes from the current seek pointer in the stream 
-        /// to the current seek pointer in another stream.
-        /// </summary>
-        /// <param name="pstm">
-        /// The destination stream. The pstm stream  can be a new stream or a clone of the source stream.
-        /// </param>
-        /// <param name="cb">
-        /// The number of bytes to copy from the source stream.
-        /// </param>
-        /// <param name="pcbRead">
-        /// The actual number of bytes read from the source. 
-        /// It can be set to IntPtr.Zero. 
-        /// In this case, this method does not provide the actual number of bytes read.
-        /// </param>
-        /// <typeparam name="pcbRead">Native UInt64</typeparam>
-        /// <param name="pcbWritten">
-        /// The actual number of bytes written to the destination. 
-        /// It can be set this to IntPtr.Zero. 
-        /// In this case, this method does not provide the actual number of bytes written.
-        /// </param>
-        /// <typeparam name="pcbWritten">Native UInt64</typeparam>
-        /// <returns>
-        /// The actual number of bytes read (<paramref name="pcbRead"/>) and written (<paramref name="pcbWritten"/>) from the source.
-        /// </returns>
-        ///<exception cref="ArgumentException">The sum of offset and count is larger than the buffer length.</exception>
-        ///<exception cref="ArgumentNullException">buffer is a null reference.</exception>
-        ///<exception cref="ArgumentOutOfRangeException">offset or count is negative.</exception>
-        ///<exception cref="IOException">An I/O error occurs.</exception>
-        ///<exception cref="NotSupportedException">The stream does not support reading.</exception>
-        ///<exception cref="ObjectDisposedException">Methods were called after the stream was closed.</exception>
+        ///  <summary>
+        ///  Copies a specified number of bytes from the current seek pointer in the stream 
+        ///  to the current seek pointer in another stream.
+        ///  </summary>
+        ///  <param name="pstm">
+        ///  The destination stream. The pstm stream  can be a new stream or a clone of the source stream.
+        ///  </param>
+        ///  <param name="cb">
+        ///  The number of bytes to copy from the source stream.
+        ///  </param>
+        ///  <param name="pcbRead">
+        ///  The actual number of bytes read from the source. 
+        ///  It can be set to IntPtr.Zero. 
+        ///  In this case, this method does not provide the actual number of bytes read.
+        ///  </param>
+        ///  <param name="pcbWritten">
+        ///  The actual number of bytes written to the destination. 
+        ///  It can be set this to IntPtr.Zero. 
+        ///  In this case, this method does not provide the actual number of bytes written.
+        ///  </param>
+        ///  <returns>
+        ///  The actual number of bytes read (<paramref name="pcbRead"/>) and written (<paramref name="pcbWritten"/>) from the source.
+        ///  </returns>
+        /// <exception cref="ArgumentException">The sum of offset and count is larger than the buffer length.</exception>
+        /// <exception cref="ArgumentNullException">buffer is a null reference.</exception>
+        /// <exception cref="ArgumentOutOfRangeException">offset or count is negative.</exception>
+        /// <exception cref="IOException">An I/O error occurs.</exception>
+        /// <exception cref="NotSupportedException">The stream does not support reading.</exception>
+        /// <exception cref="ObjectDisposedException">Methods were called after the stream was closed.</exception>
         public void CopyTo(IStream pstm, long cb, IntPtr pcbRead, IntPtr pcbWritten)
         {
-            if (TheStream != null)
+            if (_stream != null)
             {
                 var sourceBytes = new byte[cb];
-                var currentBytesRead = 0;
                 long totalBytesRead = 0;
-                var currentBytesWritten = 0;
                 long totalBytesWritten = 0;
 
                 var bw = Marshal.AllocHGlobal(Marshal.SizeOf(typeof(int)));
@@ -336,7 +331,7 @@ namespace Haipa.CloudInit.ConfigDrive
 
                 while (totalBytesWritten < cb)
                 {
-                    currentBytesRead = TheStream.Read(sourceBytes, 0, (int)(cb - totalBytesWritten));
+                    var currentBytesRead = _stream.Read(sourceBytes, 0, (int)(cb - totalBytesWritten));
 
                     // Has the end of the stream been reached?
                     if (currentBytesRead == 0) break;
@@ -344,7 +339,7 @@ namespace Haipa.CloudInit.ConfigDrive
                     totalBytesRead += currentBytesRead;
 
                     pstm.Write(sourceBytes, currentBytesRead, bw);
-                    currentBytesWritten = Marshal.ReadInt32(bw);
+                    var currentBytesWritten = Marshal.ReadInt32(bw);
                     if (currentBytesWritten != currentBytesRead)
                     {
                         Debug.WriteLine("ERROR!: The IStream Write is not writing all the bytes needed!");
@@ -359,7 +354,7 @@ namespace Haipa.CloudInit.ConfigDrive
             }
             else
             {
-                TheIStream.CopyTo(pstm, cb, pcbRead, pcbWritten);
+                _imageStream.CopyTo(pstm, cb, pcbRead, pcbWritten);
             }
         }
 
@@ -375,49 +370,48 @@ namespace Haipa.CloudInit.ConfigDrive
         ///<exception cref="NotSupportedException">The IO.Stream does not support locking.</exception>
         public void LockRegion(long libOffset, long cb, int dwLockType)
         {
-            if (TheStream != null) throw new NotSupportedException("Stream does not support locking.");
+            if (_stream != null) throw new NotSupportedException("Stream does not support locking.");
 
-            TheIStream.LockRegion(libOffset, cb, dwLockType);
+            _imageStream.LockRegion(libOffset, cb, dwLockType);
         }
 
-        /// <summary>
-        /// Reads a specified number of bytes from the stream object 
-        /// into memory starting at the current seek pointer.
-        /// </summary>
-        /// <param name="pv">The buffer which the stream data is read into.</param>
-        /// <param name="cb">The number of bytes of data to read from the stream object.</param>
-        /// <param name="pcbRead">
-        /// A pointer to a ULONG variable that receives the actual number of bytes read from the stream object.
-        /// It can be set to IntPtr.Zero. 
-        /// In this case, this method does not return the number of bytes read.
-        /// </param>
-        /// <typeparam name="pcbRead">Native UInt32</typeparam>
-        /// <returns>
-        /// The actual number of bytes read (<paramref name="pcbRead"/>) from the source.
-        /// </returns>
-        ///<exception cref="ArgumentException">The sum of offset and count is larger than the buffer length.</exception>
-        ///<exception cref="ArgumentNullException">buffer is a null reference.</exception>
-        ///<exception cref="ArgumentOutOfRangeException">offset or count is negative.</exception>
-        ///<exception cref="IOException">An I/O error occurs.</exception>
-        ///<exception cref="NotSupportedException">The stream does not support reading.</exception>
-        ///<exception cref="ObjectDisposedException">Methods were called after the stream was closed.</exception>
+        ///  <summary>
+        ///  Reads a specified number of bytes from the stream object 
+        ///  into memory starting at the current seek pointer.
+        ///  </summary>
+        ///  <param name="pv">The buffer which the stream data is read into.</param>
+        ///  <param name="cb">The number of bytes of data to read from the stream object.</param>
+        ///  <param name="pcbRead">
+        ///  A pointer to a ULONG variable that receives the actual number of bytes read from the stream object.
+        ///  It can be set to IntPtr.Zero. 
+        ///  In this case, this method does not return the number of bytes read.
+        ///  </param>
+        ///  <returns>
+        ///  The actual number of bytes read (<paramref name="pcbRead"/>) from the source.
+        ///  </returns>
+        /// <exception cref="ArgumentException">The sum of offset and count is larger than the buffer length.</exception>
+        /// <exception cref="ArgumentNullException">buffer is a null reference.</exception>
+        /// <exception cref="ArgumentOutOfRangeException">offset or count is negative.</exception>
+        /// <exception cref="IOException">An I/O error occurs.</exception>
+        /// <exception cref="NotSupportedException">The stream does not support reading.</exception>
+        /// <exception cref="ObjectDisposedException">Methods were called after the stream was closed.</exception>
         public void Read(byte[] pv, int cb, IntPtr pcbRead)
         {
-            if (TheStream != null)
+            if (_stream != null)
             {
                 if (pcbRead == IntPtr.Zero)
                 {
                     // User isn't interested in how many bytes were read
-                    TheStream.Read(pv, 0, cb);
+                    _stream.Read(pv, 0, cb);
                 }
                 else
                 {
-                    Marshal.WriteInt32(pcbRead, TheStream.Read(pv, 0, cb));
+                    Marshal.WriteInt32(pcbRead, _stream.Read(pv, 0, cb));
                 }
             }
             else
             {
-                TheIStream.Read(pv, cb, pcbRead);
+                _imageStream.Read(pv, cb, pcbRead);
             }
         }
 
@@ -431,37 +425,36 @@ namespace Haipa.CloudInit.ConfigDrive
         ///<exception cref="NotSupportedException">The IO.Stream does not support reverting.</exception>
         public void Revert()
         {
-            if (TheStream != null) throw new NotSupportedException("Stream does not support reverting.");
+            if (_stream != null) throw new NotSupportedException("Stream does not support reverting.");
 
-            TheIStream.Revert();
+            _imageStream.Revert();
         }
 
-        /// <summary>
-        /// Changes the seek pointer to a new location relative to the beginning
-        ///of the stream, the end of the stream, or the current seek pointer
-        /// </summary>
-        /// <param name="dlibMove">
-        /// The displacement to be added to the location indicated by the dwOrigin parameter. 
-        /// If dwOrigin is STREAM_SEEK_SET, this is interpreted as an unsigned value rather than a signed value.
-        /// </param>
-        /// <param name="dwOrigin">
-        /// The origin for the displacement specified in dlibMove. 
-        /// The origin can be the beginning of the file (STREAM_SEEK_SET), the current seek pointer (STREAM_SEEK_CUR), or the end of the file (STREAM_SEEK_END).
-        /// </param>
-        /// <param name="plibNewPosition">
-        /// The location where this method writes the value of the new seek pointer from the beginning of the stream.
-        /// It can be set to IntPtr.Zero. In this case, this method does not provide the new seek pointer.
-        /// </param>
-        /// <typeparam name="pcbRead">Native UInt64</typeparam>
-        /// <returns>
-        /// Returns in <paramref name="plibNewPosition"/> the location where this method writes the value of the new seek pointer from the beginning of the stream.
-        /// </returns>
-        ///<exception cref="IOException">An I/O error occurs.</exception>
-        ///<exception cref="NotSupportedException">The stream does not support reading.</exception>
-        ///<exception cref="ObjectDisposedException">Methods were called after the stream was closed.</exception>
+        ///  <summary>
+        ///  Changes the seek pointer to a new location relative to the beginning
+        /// of the stream, the end of the stream, or the current seek pointer
+        ///  </summary>
+        ///  <param name="dlibMove">
+        ///  The displacement to be added to the location indicated by the dwOrigin parameter. 
+        ///  If dwOrigin is STREAM_SEEK_SET, this is interpreted as an unsigned value rather than a signed value.
+        ///  </param>
+        ///  <param name="dwOrigin">
+        ///  The origin for the displacement specified in dlibMove. 
+        ///  The origin can be the beginning of the file (STREAM_SEEK_SET), the current seek pointer (STREAM_SEEK_CUR), or the end of the file (STREAM_SEEK_END).
+        ///  </param>
+        ///  <param name="plibNewPosition">
+        ///  The location where this method writes the value of the new seek pointer from the beginning of the stream.
+        ///  It can be set to IntPtr.Zero. In this case, this method does not provide the new seek pointer.
+        ///  </param>
+        ///  <returns>
+        ///  Returns in <paramref name="plibNewPosition"/> the location where this method writes the value of the new seek pointer from the beginning of the stream.
+        ///  </returns>
+        /// <exception cref="IOException">An I/O error occurs.</exception>
+        /// <exception cref="NotSupportedException">The stream does not support reading.</exception>
+        /// <exception cref="ObjectDisposedException">Methods were called after the stream was closed.</exception>
         public void Seek(long dlibMove, int dwOrigin, IntPtr plibNewPosition)
         {
-            if (TheStream != null)
+            if (_stream != null)
             {
                 // The enum values of SeekOrigin match the enum values of
                 // STREAM_SEEK, so we can just cast the dwOrigin to a SeekOrigin
@@ -469,7 +462,7 @@ namespace Haipa.CloudInit.ConfigDrive
                 if (plibNewPosition == IntPtr.Zero)
                 {
                     // User isn't interested in new position
-                    TheStream.Seek(dlibMove, (SeekOrigin)dwOrigin);
+                    _stream.Seek(dlibMove, (SeekOrigin)dwOrigin);
                 }
                 else
                 {
@@ -480,12 +473,12 @@ namespace Haipa.CloudInit.ConfigDrive
                     {
                         origin = SeekOrigin.Begin;
                     }
-                    Marshal.WriteInt64(plibNewPosition, TheStream.Seek(dlibMove, origin));
+                    Marshal.WriteInt64(plibNewPosition, _stream.Seek(dlibMove, origin));
                 }
             }
             else
             {
-                TheIStream.Seek(dlibMove, dwOrigin, plibNewPosition);
+                _imageStream.Seek(dlibMove, dwOrigin, plibNewPosition);
             }
         }
 
@@ -498,14 +491,14 @@ namespace Haipa.CloudInit.ConfigDrive
         ///<exception cref="ObjectDisposedException">Methods were called after the stream was closed.</exception>
         public void SetSize(long libNewSize)
         {
-            if (TheStream != null)
+            if (_stream != null)
             {
                 // Sets the length of the current stream.
-                TheStream.SetLength(libNewSize);
+                _stream.SetLength(libNewSize);
             }
             else
             {
-                TheIStream.SetSize(libNewSize);
+                _imageStream.SetSize(libNewSize);
             }
         }
 
@@ -526,18 +519,20 @@ namespace Haipa.CloudInit.ConfigDrive
         ///<exception cref="ObjectDisposedException">Methods were called after the stream was closed.</exception>
         public void Stat(out System.Runtime.InteropServices.ComTypes.STATSTG pstatstg, int grfStatFlag)
         {
-            if (TheStream != null)
+            if (_stream != null)
             {
-                pstatstg = new System.Runtime.InteropServices.ComTypes.STATSTG();
-                pstatstg.type = 2; // STGTY_STREAM
+                pstatstg = new System.Runtime.InteropServices.ComTypes.STATSTG
+                {
+                    type = 2, cbSize = _stream.Length, grfMode = 2, grfLocksSupported = 2
+                };
+                // STGTY_STREAM
                 // Gets the length in bytes of the stream.
-                pstatstg.cbSize = TheStream.Length;
-                pstatstg.grfMode = 2; // STGM_READWRITE;
-                pstatstg.grfLocksSupported = 2; // LOCK_EXCLUSIVE
+                // STGM_READWRITE;
+                // LOCK_EXCLUSIVE
             }
             else
             {
-                TheIStream.Stat(out pstatstg, grfStatFlag);
+                _imageStream.Stat(out pstatstg, grfStatFlag);
             }
         }
 
@@ -554,66 +549,65 @@ namespace Haipa.CloudInit.ConfigDrive
         ///<exception cref="NotSupportedException">The IO.Stream does not support unlocking.</exception>
         public void UnlockRegion(long libOffset, long cb, int dwLockType)
         {
-            if (TheStream != null) throw new NotSupportedException("Stream does not support unlocking.");
+            if (_stream != null) throw new NotSupportedException("Stream does not support unlocking.");
 
-            TheIStream.UnlockRegion(libOffset, cb, dwLockType);
+            _imageStream.UnlockRegion(libOffset, cb, dwLockType);
         }
 
-        /// <summary>
-        /// Writes a specified number of bytes into the stream object 
-        ///starting at the current seek pointer.
-        /// </summary>
-        /// <param name="pv">The buffer that contains the data that is to be written to the stream. 
-        /// A valid buffer must be provided for this parameter even when cb is zero.</param>
-        /// <param name="cb">The number of bytes of data to attempt to write into the stream. This value can be zero.</param>
-        /// <param name="pcbWritten">
-        /// A variable where this method writes the actual number of bytes written to the stream object. 
-        /// The caller can set this to IntPtr.Zero, in which case this method does not provide the actual number of bytes written.
-        /// </param>
-        /// <typeparam name="pcbWritten">Native UInt32</typeparam>
-        /// <returns>
-        /// The actual number of bytes written (<paramref name="pcbWritten"/>).
-        /// </returns>
-        ///<exception cref="ArgumentException">The sum of offset and count is larger than the buffer length.</exception>
-        ///<exception cref="ArgumentNullException">buffer is a null reference.</exception>
-        ///<exception cref="ArgumentOutOfRangeException">offset or count is negative.</exception>
-        ///<exception cref="IOException">An I/O error occurs.</exception>
-        ///<exception cref="NotSupportedException">The IO.Stream does not support reading.</exception>
-        ///<exception cref="ObjectDisposedException">Methods were called after the stream was closed.</exception>
+        ///  <summary>
+        ///  Writes a specified number of bytes into the stream object 
+        /// starting at the current seek pointer.
+        ///  </summary>
+        ///  <param name="pv">The buffer that contains the data that is to be written to the stream. 
+        ///  A valid buffer must be provided for this parameter even when cb is zero.</param>
+        ///  <param name="cb">The number of bytes of data to attempt to write into the stream. This value can be zero.</param>
+        ///  <param name="pcbWritten">
+        ///  A variable where this method writes the actual number of bytes written to the stream object. 
+        ///  The caller can set this to IntPtr.Zero, in which case this method does not provide the actual number of bytes written.
+        ///  </param>
+        ///  <returns>
+        ///  The actual number of bytes written (<paramref name="pcbWritten"/>).
+        ///  </returns>
+        /// <exception cref="ArgumentException">The sum of offset and count is larger than the buffer length.</exception>
+        /// <exception cref="ArgumentNullException">buffer is a null reference.</exception>
+        /// <exception cref="ArgumentOutOfRangeException">offset or count is negative.</exception>
+        /// <exception cref="IOException">An I/O error occurs.</exception>
+        /// <exception cref="NotSupportedException">The IO.Stream does not support reading.</exception>
+        /// <exception cref="ObjectDisposedException">Methods were called after the stream was closed.</exception>
         public void Write(byte[] pv, int cb, IntPtr pcbWritten)
         {
-            if (TheStream != null)
+            if (_stream != null)
             {
                 if (pcbWritten == IntPtr.Zero)
                 {
                     // User isn't interested in how many bytes were written
-                    TheStream.Write(pv, 0, cb);
+                    _stream.Write(pv, 0, cb);
                 }
                 else
                 {
-                    var currentPosition = TheStream.Position;
-                    TheStream.Write(pv, 0, cb);
-                    Marshal.WriteInt32(pcbWritten, (int)(TheStream.Position - currentPosition));
+                    var currentPosition = _stream.Position;
+                    _stream.Write(pv, 0, cb);
+                    Marshal.WriteInt32(pcbWritten, (int)(_stream.Position - currentPosition));
                 }
             }
             else
             {
-                TheIStream.Write(pv, cb, pcbWritten);
+                _imageStream.Write(pv, cb, pcbWritten);
             }
         }
 
         // Default constructor. Should not be used to create an AStream object.
         private ImageStream()
         {
-            TheStream = null;
-            TheIStream = null;
+            _stream = null;
+            _imageStream = null;
         }
 
         // Copy constructor. It is not safe to only pass the Stream and IStream.
         private ImageStream(ImageStream previousAStream)
         {
-            TheStream = previousAStream.TheStream;
-            TheIStream = previousAStream.TheIStream;
+            _stream = previousAStream._stream;
+            _imageStream = previousAStream._imageStream;
         }
 
         /// <summary>
@@ -623,14 +617,10 @@ namespace Haipa.CloudInit.ConfigDrive
         ///<exception cref="ArgumentNullException">Stream cannot be null</exception>
         public ImageStream(Stream stream)
         {
-            TheStream = null;
-            TheIStream = null;
+            this._stream = null;
+            _imageStream = null;
 
-            if (stream == null)
-            {
-                throw new ArgumentNullException("Stream cannot be null");
-            }
-            TheStream = stream;
+            this._stream = stream ?? throw new ArgumentNullException("Stream cannot be null");
         }
 
         /// <summary>
@@ -640,14 +630,10 @@ namespace Haipa.CloudInit.ConfigDrive
         ///<exception cref="ArgumentNullException">Stream cannot be null</exception>
         public ImageStream(IStream stream)
         {
-            TheStream = null;
-            TheIStream = null;
+            this._stream = null;
+            _imageStream = null;
 
-            if (stream == null)
-            {
-                throw new ArgumentNullException("IStream cannot be null");
-            }
-            TheIStream = stream;
+            _imageStream = stream ?? throw new ArgumentNullException("IStream cannot be null");
         }
 
         // Allows the Object to attempt to free resources and perform other 
@@ -655,9 +641,9 @@ namespace Haipa.CloudInit.ConfigDrive
         // (Inherited from Object.)
         ~ImageStream()
         {
-            if (TheStream != null)
+            if (_stream != null)
             {
-                TheStream.Close();
+                _stream.Close();
             }
         }
 
@@ -678,13 +664,13 @@ namespace Haipa.CloudInit.ConfigDrive
         /// </remarks>
         public override void Close()
         {
-            if (TheStream != null)
+            if (_stream != null)
             {
-                TheStream.Close();
+                _stream.Close();
             }
             else
             {
-                TheIStream.Commit(0 /*STGC_DEFAULT*/);
+                _imageStream.Commit(0 /*STGC_DEFAULT*/);
                 //                Marshal.ReleaseComObject(TheIStream);    // Investigate this because we cannot release an IStream to the stash file
             }
             GC.SuppressFinalize(this);
@@ -705,36 +691,32 @@ namespace Haipa.CloudInit.ConfigDrive
 
         public static IStream ToIStream(object stream)
         {
-            if (stream is Stream)
+            switch (stream)
             {
-                return new ImageStream(stream as Stream);
+                case Stream streamObject:
+                    return new ImageStream(streamObject);
+                case IStream iStream:
+                    return iStream;
+                default:
+                    return null;
             }
-
-            if (stream is IStream)
-            {
-                return stream as IStream;
-            }
-
-            return null;
         }
 
         public static Stream ToStream(object stream)
         {
-            if (stream is Stream)
+            switch (stream)
             {
-                return stream as Stream;
+                case Stream streamObject:
+                    return streamObject;
+                case IStream iStream:
+                    return new ImageStream(iStream);
+                default:
+                    return null;
             }
-
-            if (stream is IStream)
-            {
-                return new ImageStream(stream as IStream);
-            }
-
-            return null;
         }
 
-        private readonly Stream TheStream;   // The Stream being wrapped
-        private readonly IStream TheIStream; // The IStream being wrapped
+        private readonly Stream _stream;   // The Stream being wrapped
+        private readonly IStream _imageStream; // The IStream being wrapped
 
     }
 }

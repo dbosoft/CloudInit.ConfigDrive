@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Haipa.CloudInit.ConfigDrive.Processing
+namespace Dbosoft.CloudInit.ConfigDrive.Processing
 {
     internal class CallbackProcessResultCommandHandlerDecoration : ICommandHandler<ProcessResultCommand>
     {

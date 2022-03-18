@@ -1,12 +1,12 @@
-﻿using Haipa.CloudInit.ConfigDrive.Generator;
+﻿using Dbosoft.CloudInit.ConfigDrive.Generator;
 
-namespace Haipa.CloudInit.ConfigDrive.NoCloud
+namespace Dbosoft.CloudInit.ConfigDrive.NoCloud
 {
     public static class NoCloudGeneratorBuilderExtensions
     {
         public static NoCloudGeneratorBuilder NoCloud(this IGenerateableBuilder builder, NoCloudConfigDriveMetaData metaData)
         {
-            return new NoCloudGeneratorBuilder(builder) { Metadata = metaData }; ;
+            return new NoCloudGeneratorBuilder(builder) { Metadata = metaData }; 
         }
     }
 }

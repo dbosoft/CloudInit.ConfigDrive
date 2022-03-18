@@ -1,7 +1,7 @@
 ﻿using System;
-using Haipa.CloudInit.ConfigDrive.Generator;
+using Dbosoft.CloudInit.ConfigDrive.Generator;
 
-namespace Haipa.CloudInit.ConfigDrive.Processing
+namespace Dbosoft.CloudInit.ConfigDrive.Processing
 {
     public class ProcessorBuilder : GenerateableBuilder
     {

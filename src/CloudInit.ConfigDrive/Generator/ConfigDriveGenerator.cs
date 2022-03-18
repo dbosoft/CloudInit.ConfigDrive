@@ -1,6 +1,6 @@
-﻿using Haipa.CloudInit.ConfigDrive.Processing;
+﻿using Dbosoft.CloudInit.ConfigDrive.Processing;
 
-namespace Haipa.CloudInit.ConfigDrive.Generator
+namespace Dbosoft.CloudInit.ConfigDrive.Generator
 {
     class ConfigDriveGenerator : IConfigDriveGenerator
     {

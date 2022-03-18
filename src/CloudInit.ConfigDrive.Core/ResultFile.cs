@@ -1,6 +1,6 @@
 ﻿using System.IO;
 
-namespace Haipa.CloudInit.ConfigDrive
+namespace Dbosoft.CloudInit.ConfigDrive
 {
     public class ResultFile
     {
