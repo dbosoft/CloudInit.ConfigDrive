@@ -2,24 +2,28 @@
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-    <TargetFrameworks>net471;net5.0-windows</TargetFrameworks>
+    <TargetFramework>net6.0-windows</TargetFramework>
     <RootNamespace>Dbosoft.CloudInit.ConfigDrive</RootNamespace>
     <AssemblyName>cloud-init-cd</AssemblyName>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="CommandLineParser" Version="2.3.0" />
-    <PackageReference Include="GitVersion.MsBuild" Version="5.6.10">
+    <PackageReference Include="CommandLineParser" Version="2.8.0" />
+    <PackageReference Include="GitVersion.MsBuild" Version="5.9.0">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="JetBrains.Annotations" Version="2021.1.0" />
+    <PackageReference Include="JetBrains.Annotations" Version="2021.3.0" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\CloudInit.ConfigDrive.NoCloud\CloudInit.ConfigDrive.NoCloud.csproj" />
     <ProjectReference Include="..\CloudInit.ConfigDrive.WindowsImaging\CloudInit.ConfigDrive.WindowsImaging.csproj" />
     <ProjectReference Include="..\CloudInit.ConfigDrive\CloudInit.ConfigDrive.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Update="Microsoft.SourceLink.GitHub" Version="1.1.1" />
   </ItemGroup>
 
 </Project>
