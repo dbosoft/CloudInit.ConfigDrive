@@ -4,6 +4,7 @@
     <TargetFramework>netstandard2.1</TargetFramework>
     <AssemblyName>Dbosoft.CloudInit.ConfigDrive.NoCloud</AssemblyName>
     <RootNamespace>Dbosoft.CloudInit.ConfigDrive</RootNamespace>
+    <Nullable>enable</Nullable>
   </PropertyGroup>
 
   <ItemGroup>

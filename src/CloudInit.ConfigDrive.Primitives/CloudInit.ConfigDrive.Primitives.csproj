@@ -2,15 +2,10 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.1</TargetFramework>
-    <AssemblyName>Dbosoft.CloudInit.ConfigDrive</AssemblyName>
+    <AssemblyName>Dbosoft.CloudInit.ConfigDrive.Primitives</AssemblyName>
     <RootNamespace>Dbosoft.CloudInit.ConfigDrive</RootNamespace>
     <Nullable>enable</Nullable>
   </PropertyGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\CloudInit.ConfigDrive.Core\CloudInit.ConfigDrive.Core.csproj" />
-    <ProjectReference Include="..\CloudInit.ConfigDrive.NoCloud\CloudInit.ConfigDrive.NoCloud.csproj" />
-  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="GitVersion.MsBuild" Version="5.9.0">

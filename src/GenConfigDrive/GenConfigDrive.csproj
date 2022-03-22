@@ -5,6 +5,7 @@
     <TargetFramework>net6.0-windows</TargetFramework>
     <RootNamespace>Dbosoft.CloudInit.ConfigDrive</RootNamespace>
     <AssemblyName>cloud-init-cd</AssemblyName>
+    <Nullable>enable</Nullable>
   </PropertyGroup>
 
   <ItemGroup>

@@ -5,13 +5,14 @@
 
 using System;
 using System.Collections;
+using System.Diagnostics.CodeAnalysis;
 using System.Runtime.InteropServices;
 using System.Runtime.InteropServices.ComTypes;
 using System.Threading;
-using Haipa.CloudInit.ConfigDrive.Interop;
 
 namespace Dbosoft.CloudInit.ConfigDrive.Interop
 {
+    [ExcludeFromCodeCoverage]
     [ClassInterface(ClassInterfaceType.None)]
     // ReSharper disable once InconsistentNaming
     internal sealed class DiscFormat2Data_EventsProvider : DiscFormat2Data_Events, IDisposable

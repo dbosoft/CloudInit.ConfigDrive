@@ -6,14 +6,14 @@
 // ReSharper disable All
 
 using System;
+using System.Diagnostics.CodeAnalysis;
 using System.Runtime.InteropServices;
-using Dbosoft.CloudInit.ConfigDrive.Interop;
 
 #pragma warning disable 1573
 #pragma warning disable 1584,1711,1572,1581,1580
 #pragma warning disable 1591
 
-namespace Haipa.CloudInit.ConfigDrive.Interop
+namespace Dbosoft.CloudInit.ConfigDrive.Interop
 {
     // Interfaces
 
@@ -24,6 +24,7 @@ namespace Haipa.CloudInit.ConfigDrive.Interop
     //Events
 
     [TypeLibType(TypeLibTypeFlags.FHidden), ClassInterface(ClassInterfaceType.None)]
+    [ExcludeFromCodeCoverage]
     public sealed class DiscFormat2Data_SinkHelper : DDiscFormat2DataEvents
     {
         public DiscFormat2Data_SinkHelper(DiscFormat2Data_EventsHandler eventHandler)

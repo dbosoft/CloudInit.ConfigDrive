@@ -1,17 +1,13 @@
-﻿#if NET45
-
-#elif NETSTANDARD
-using System.Runtime.Serialization;
-#endif
+﻿
 using System;
+using System.Diagnostics.CodeAnalysis;
+using System.Runtime.Serialization;
 
 namespace Dbosoft.CloudInit.ConfigDrive
 {
-#if NET45
+
     [Serializable]
-#elif NETSTANDARD
-    [Serializable]
-#endif
+    [ExcludeFromCodeCoverage]
     public class CloudInitConfigurationException : Exception
     {
         public CloudInitConfigurationException()
@@ -26,22 +22,10 @@ namespace Dbosoft.CloudInit.ConfigDrive
         {
         }
 
-#if NET45
-/// <summary>
-/// Constructs the exception
-/// </summary>
         public CloudInitConfigurationException(SerializationInfo info, StreamingContext context)
             : base(info, context)
         {
         }
-#elif NETSTANDARD2_0
-/// <summary>
-/// Constructs the exception
-/// </summary>
-        public CloudInitConfigurationException(SerializationInfo info, StreamingContext context)
-            : base(info, context)
-        {
-        }
-#endif
+
     }
 }
