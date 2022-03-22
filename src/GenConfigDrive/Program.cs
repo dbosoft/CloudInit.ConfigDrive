@@ -1,70 +1,52 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Text;
+using System.Threading.Tasks;
 using CommandLine;
-using Dbosoft.CloudInit.ConfigDrive.Generator;
-using Dbosoft.CloudInit.ConfigDrive.NoCloud;
-using Dbosoft.CloudInit.ConfigDrive.Processing;
 using JetBrains.Annotations;
-using Newtonsoft.Json.Linq;
 
 namespace Dbosoft.CloudInit.ConfigDrive
 {
+    [ExcludeFromCodeCoverage]
     public static class Program
     {
-        public static int Main(string[] args)
+        public static async Task Main(string[] args)
         {
-            return Parser.Default.ParseArguments<NoCloudOptions>(args)
-                .MapResult(
-                    RunNoCloudAndReturnExitCode,
-                    errs => 1);
+            var result = await Parser.Default
+                .ParseArguments<NoCloudOptions>(args)
+                .WithParsedAsync(RunNoCloudAndReturnExitCode);
+
+           
+            //return Parser.Default.ParseArguments<NoCloudOptions>(args)
+
         }
 
-        private static int RunNoCloudAndReturnExitCode(NoCloudOptions opts)
+        private static async Task<int> RunNoCloudAndReturnExitCode(NoCloudOptions opts)
         {
             try
             {
-                var noCloudBuilder = GeneratorBuilder.Init()
-                    .NoCloud(new NoCloudConfigDriveMetaData(opts.Hostname));
-
-                if (!opts.NoSwapFile)
-                    noCloudBuilder.SwapFile();
-
-                if (!string.IsNullOrWhiteSpace(opts.Proxy))
-                    noCloudBuilder.ProxySettings(new ConfigDriveProxySettings(opts.Proxy) {NoProxy = opts.NoProxy});
+                var configDrive = new ConfigDriveBuilder()
+                    .NoCloud(new NoCloudConfigDriveMetaData(opts.Hostname))
+                    .Build();
 
                 if (!string.IsNullOrWhiteSpace(opts.UserData))
-                    noCloudBuilder.UserData(ReadJsonFile(opts.UserData));
+                    configDrive.AddUserData(
+                        new UserData(UserDataContentType.CloudConfig, await File.ReadAllTextAsync(opts.UserData), Encoding.UTF8));
 
-                if (!string.IsNullOrWhiteSpace(opts.NetworkData))
-                    noCloudBuilder.NetworkData(ReadJsonFile(opts.NetworkData));
+                //if (!string.IsNullOrWhiteSpace(opts.NetworkData))
+                //    noCloudBuilder.NetworkData(ReadJsonFile(opts.NetworkData));
 
-
-                if (!string.IsNullOrWhiteSpace(opts.Content))
-                    noCloudBuilder.Content(opts.Content);
-
-                var processingBuilder = noCloudBuilder.Processing();
-
-
+                var outputBuilder = new StringBuilder();
+                IConfigDriveWriter writer = new ConfigDriveStringWriter(outputBuilder);
                 if (!string.IsNullOrWhiteSpace(opts.ImagePath))
-                    processingBuilder.Image().ImageFile(opts.ImagePath);
-                else
                 {
-                    processingBuilder.Callback(result =>
-                    {
-                        Console.WriteLine(result.MediaName);
-                        foreach (var resultFile in result.Files)
-                        {
-                            using (var reader = new StreamReader(resultFile.Content, Encoding.UTF8))
-                            {
-                                reader.BaseStream.Seek(0, SeekOrigin.Begin);
-                                Console.WriteLine(reader.ReadToEnd());
-                            }
-                        }
-                    });
+                    writer = new ConfigDriveImageWriter(opts.ImagePath);
                 }
+
+                await writer.WriteConfigDrive(configDrive);
+                Console.WriteLine(outputBuilder.ToString());
                 
-                processingBuilder.Generate();
                 return 0;
             }
             catch (Exception ex)
@@ -74,14 +56,11 @@ namespace Dbosoft.CloudInit.ConfigDrive
             }
         }
 
-        private static JObject ReadJsonFile(string filename)
-        {
-            return JObject.Parse(File.ReadAllText(filename));
-        }
     }
 
     [Verb("NoCloud", HelpText = "Generate a NoCloud cloud-init disk")]
     [UsedImplicitly(ImplicitUseTargetFlags.Members)]
+    [ExcludeFromCodeCoverage]
     internal class NoCloudOptions
     {
         [Option(HelpText = "Path to cloud-init user data")]

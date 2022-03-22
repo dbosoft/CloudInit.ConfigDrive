@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.31410.357
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.32112.339
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GenConfigDrive", "src\GenConfigDrive\GenConfigDrive.csproj", "{A71DAC22-FD4F-476C-B694-70FD07413AC7}"
 EndProject
@@ -19,6 +19,14 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 	ProjectSection(SolutionItems) = preProject
 		gitversion.yml = gitversion.yml
 	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CloudInit.ConfigDrive.Primitives", "src\CloudInit.ConfigDrive.Primitives\CloudInit.ConfigDrive.Primitives.csproj", "{AFC44DAC-1BEE-4E66-86AF-BC7019884623}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test", "Test", "{026B22EC-580F-421B-9C7B-3206962FEB45}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CloudInit.ConfigDrive.Core.Test", "test\CloudInit.ConfigDrive.Core.Test\CloudInit.ConfigDrive.Core.Test.csproj", "{5A8B0293-50C7-4C03-9801-B7F6FAE5A007}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CloudInit.ConfigDrive.Core.NoCloud.Test", "test\CloudInit.ConfigDrive.NoCloud.Test\CloudInit.ConfigDrive.Core.NoCloud.Test.csproj", "{CDFF88B2-B3D2-4483-BBA4-92322F0D832C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -50,9 +58,25 @@ Global
 		{1B4A5A68-A987-4B31-BAC6-20F130B6C171}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1B4A5A68-A987-4B31-BAC6-20F130B6C171}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1B4A5A68-A987-4B31-BAC6-20F130B6C171}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AFC44DAC-1BEE-4E66-86AF-BC7019884623}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AFC44DAC-1BEE-4E66-86AF-BC7019884623}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AFC44DAC-1BEE-4E66-86AF-BC7019884623}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AFC44DAC-1BEE-4E66-86AF-BC7019884623}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5A8B0293-50C7-4C03-9801-B7F6FAE5A007}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5A8B0293-50C7-4C03-9801-B7F6FAE5A007}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5A8B0293-50C7-4C03-9801-B7F6FAE5A007}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5A8B0293-50C7-4C03-9801-B7F6FAE5A007}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CDFF88B2-B3D2-4483-BBA4-92322F0D832C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CDFF88B2-B3D2-4483-BBA4-92322F0D832C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CDFF88B2-B3D2-4483-BBA4-92322F0D832C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CDFF88B2-B3D2-4483-BBA4-92322F0D832C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{5A8B0293-50C7-4C03-9801-B7F6FAE5A007} = {026B22EC-580F-421B-9C7B-3206962FEB45}
+		{CDFF88B2-B3D2-4483-BBA4-92322F0D832C} = {026B22EC-580F-421B-9C7B-3206962FEB45}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {46F8F7D9-10BC-4964-866B-84DE74EB43BD}

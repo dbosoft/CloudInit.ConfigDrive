@@ -4,6 +4,7 @@
     <TargetFramework>netstandard2.1</TargetFramework>
     <AssemblyName>Dbosoft.CloudInit.ConfigDrive.Abstractions</AssemblyName>
     <RootNamespace>Dbosoft.CloudInit.ConfigDrive</RootNamespace>
+    <Nullable>enable</Nullable>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="GitVersion.MsBuild" Version="5.9.0">
@@ -11,6 +12,9 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
     </PackageReference>
     <PackageReference Include="JetBrains.Annotations" Version="2021.3.0" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CloudInit.ConfigDrive.Primitives\CloudInit.ConfigDrive.Primitives.csproj" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Update="Microsoft.SourceLink.GitHub" Version="1.1.1" />
