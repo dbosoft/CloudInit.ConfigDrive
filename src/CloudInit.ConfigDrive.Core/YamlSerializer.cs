@@ -61,6 +61,7 @@ namespace Dbosoft.CloudInit.ConfigDrive
                     {
                         Version = 2
                     };
+                    output = v2;
 
                     if (networkData.Config is IDictionary<string, object> dict)
                     {

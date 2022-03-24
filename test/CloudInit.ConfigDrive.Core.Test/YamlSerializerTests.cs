@@ -41,12 +41,11 @@ key2: value2
         using var streamReader = new StreamReader(resultStream);
         var act = await streamReader.ReadToEndAsync();
 
-        Assert.Equal(@"network:
-  version: 1
-  config:
-  - type: physical
-    name: interface0
-    mac_address: 00:11:22:33:44:55
+        Assert.Equal(@"version: 1
+config:
+- type: physical
+  name: interface0
+  mac_address: 00:11:22:33:44:55
 ", act);
     }
 
@@ -72,13 +71,12 @@ key2: value2
         using var streamReader = new StreamReader(resultStream);
         var act = await streamReader.ReadToEndAsync();
 
-        Assert.Equal(@"network:
-  version: 2
-  ethernets:
-    eth0:
-      match:
-        macaddress: 00:11:22:33:44:55
-      dhcp4: true
+        Assert.Equal(@"version: 2
+ethernets:
+  eth0:
+    match:
+      macaddress: 00:11:22:33:44:55
+    dhcp4: true
 ", act);
     }
 
