@@ -1,10 +1,13 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.IO;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using CommandLine;
 using JetBrains.Annotations;
+using YamlDotNet.Serialization;
 
 namespace Dbosoft.CloudInit.ConfigDrive
 {
@@ -34,8 +37,8 @@ namespace Dbosoft.CloudInit.ConfigDrive
                     configDrive.AddUserData(
                         new UserData(UserDataContentType.CloudConfig, await File.ReadAllTextAsync(opts.UserData), Encoding.UTF8));
 
-                //if (!string.IsNullOrWhiteSpace(opts.NetworkData))
-                //    noCloudBuilder.NetworkData(ReadJsonFile(opts.NetworkData));
+                if (!string.IsNullOrWhiteSpace(opts.NetworkData))
+                    configDrive.SetNetworkData(NetworkDataFromYaml(opts.NetworkData));
 
                 var outputBuilder = new StringBuilder();
                 IConfigDriveWriter writer = new ConfigDriveStringWriter(outputBuilder);
@@ -56,6 +59,39 @@ namespace Dbosoft.CloudInit.ConfigDrive
             }
         }
 
+        private static NetworkData NetworkDataFromYaml(string yamlFilePath)
+        {
+            var content = File.ReadAllText(yamlFilePath);
+            var serializer = new DeserializerBuilder().Build();
+            var dictionary = serializer.Deserialize<Dictionary<string, object>>(content);
+
+            if (dictionary==null)
+            {
+                throw new CloudInitConfigurationException("invalid network data. Could convert to key/value list");
+            }
+
+            if (!dictionary.ContainsKey("version"))
+            {
+                throw new CloudInitConfigurationException("invalid network data. Could not find version");
+            }
+
+            var version = Convert.ToInt32(dictionary["version"]);
+
+            if (version == 1)
+            {
+                if (!dictionary.ContainsKey("config"))
+                {
+                    throw new CloudInitConfigurationException("invalid network data. Could not find config.");
+                }
+                return new NetworkData((dictionary["config"] as IList<object>)!);
+
+            }
+
+            if (version == 2)
+                return new NetworkData(dictionary);
+
+            throw new CloudInitConfigurationException($"invalid network data. Version {version} is not supported.");
+        }
     }
 
     [Verb("NoCloud", HelpText = "Generate a NoCloud cloud-init disk")]
