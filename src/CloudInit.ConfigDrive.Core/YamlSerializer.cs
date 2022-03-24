@@ -44,12 +44,13 @@ namespace Dbosoft.CloudInit.ConfigDrive
             if (networkData == null)
                 return;
 
-            var envelope = new NetworkDataEnvelope();
+            //var envelope = new NetworkDataEnvelope();
+            NetworkWithVersion? output = null;
 
             switch (networkData.Format)
             {
                 case NetworkDataFormat.V1:
-                    envelope.Network = new NetworkDataV1
+                    output = new NetworkDataV1
                     {
                         Version = 1,
                         Config = networkData.Config as IList<object>
@@ -80,21 +81,14 @@ namespace Dbosoft.CloudInit.ConfigDrive
                         v2.Routes = routes;
                     }
 
-                    envelope.Network = v2;
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();
             }
 
+            if (output == null) return;
             var serializer = new SerializerBuilder().BuildValueSerializer();
-            serializer.SerializeValue(emitter, envelope, typeof(NetworkDataEnvelope));
-
-        }
-
-        private class NetworkDataEnvelope
-        {
-            [YamlMember(Alias = "network")]
-            public NetworkWithVersion Network { get; set; }
+            serializer.SerializeValue(emitter, output, output.GetType());
         }
 
         private class NetworkWithVersion

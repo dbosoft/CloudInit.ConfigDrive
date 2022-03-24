@@ -2,7 +2,7 @@
   "profiles": {
     "GenConfigDrive": {
       "commandName": "Project",
-      "commandLineArgs": "--hostname test --userdata \"T:\\Haipa\\init.txt\""
+      "commandLineArgs": "--hostname test --userdata \"d:\\userdata.yml\" --networkdata \"D:\\network.yml\" --imagepath t:\\cc.iso"
     }
   }
 }

@@ -21,4 +21,6 @@ namespace Dbosoft.CloudInit.ConfigDrive
             Format = NetworkDataFormat.V2;
         }
     }
+
+
 }
