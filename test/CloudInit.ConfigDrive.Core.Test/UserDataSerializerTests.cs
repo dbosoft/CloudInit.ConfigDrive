@@ -29,7 +29,7 @@ public class UserDataSerializerTests
         Assert.Equal(@"From nobody Fri Jan  11 07:00:00 1980
 Content-Type: multipart/mixed; boundary=""==BOUNDARY==""
 MIME-Version: 1.0
-", act);
+".Replace("\r\n", "\n"), act);
     }
 
     [Fact]
@@ -59,7 +59,7 @@ MIME-Version: 1.0
 MIME-Version: 1.0
 Content-Type: text/cloud-config; charset=""us-ascii""
 some config
-", act);
+".Replace("\r\n", "\n"), act);
     }
 
     [Fact]
@@ -90,7 +90,7 @@ MIME-Version: 1.0
 Content-Type: text/cloud-config; charset=""us-ascii""
 Content-Transfer-Encoding: base64
 {Convert.ToBase64String(Encoding.ASCII.GetBytes("some config"), Base64FormattingOptions.InsertLineBreaks)}
-", act);
+".Replace("\r\n", "\n"), act);
 
     }
 
@@ -118,7 +118,7 @@ Content-Transfer-Encoding: base64
         Assert.Equal(@"From nobody Fri Jan  11 07:00:00 1980
 Content-Type: multipart/mixed; boundary=""==BOUNDARY==""
 MIME-Version: 1.0
-", act);
+".Replace("\r\n", "\n"), act);
 
     }
 

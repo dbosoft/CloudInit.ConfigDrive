@@ -12,26 +12,32 @@ namespace Dbosoft.CloudInit.ConfigDrive
         public async Task<Stream> SerializeUserData(IEnumerable<UserData> userData, UserDataOptions options)
         {
             var sb = new StringBuilder();
-            sb.AppendLine("From nobody Fri Jan  11 07:00:00 1980");
-            sb.AppendLine("Content-Type: multipart/mixed; boundary=\"==BOUNDARY==\"");
-            sb.AppendLine("MIME-Version: 1.0");
+            
+            sb.Append("From nobody Fri Jan  11 07:00:00 1980\n");
+            sb.Append("Content-Type: multipart/mixed; boundary=\"==BOUNDARY==\"\n");
+            sb.Append("MIME-Version: 1.0\n");
 
             foreach (var data in userData)
             {
-                sb.AppendLine("--==BOUNDARY==");
-                sb.AppendLine("MIME-Version: 1.0");
+                sb.Append("--==BOUNDARY==\n");
+                sb.Append("MIME-Version: 1.0\n");
 
 
-                sb.AppendLine($"Content-Type: {data.ContentType.Name}; charset=\"{data.Encoding.BodyName}\"");
+                sb.Append($"Content-Type: {data.ContentType.Name}; charset=\"{data.Encoding.BodyName}\"\n");
 
-                var contentString = data.Content;
+                if(!string.IsNullOrWhiteSpace(data.FileName))
+                    sb.Append($"Content-Disposition: attachment; filename=\"{data.FileName}\"\n");
+
+                var contentString = data.Content.Replace("\r\n", "\n");
                 if (options.Base64Encode)
                 {
-                    contentString = Convert.ToBase64String(data.Encoding.GetBytes(contentString), Base64FormattingOptions.InsertLineBreaks);
-                    sb.AppendLine("Content-Transfer-Encoding: base64");
+                    contentString = Convert
+                        .ToBase64String(data.Encoding.GetBytes(contentString), Base64FormattingOptions.InsertLineBreaks)
+                        .Replace("\r\n", "\n");
+                    sb.Append("Content-Transfer-Encoding: base64\n");
                 }
 
-                sb.AppendLine(contentString);
+                sb.Append(contentString+ "\n");
 
 
             }
