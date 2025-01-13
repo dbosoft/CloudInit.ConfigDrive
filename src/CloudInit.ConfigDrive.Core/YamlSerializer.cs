@@ -32,20 +32,19 @@ namespace Dbosoft.CloudInit.ConfigDrive
             return typeof(NetworkData) == type;
         }
 
-        public object? ReadYaml(IParser parser, Type type)
+        public object? ReadYaml(IParser parser, Type type, ObjectDeserializer rootDeserializer)
         {
             throw new NotImplementedException();
         }
 
-        public void WriteYaml(IEmitter emitter, object? value, Type type)
+        public void WriteYaml(IEmitter emitter, object? value, Type type, ObjectSerializer serializer)
         {
             var networkData = value as NetworkData;
 
             if (networkData == null)
                 return;
 
-            //var envelope = new NetworkDataEnvelope();
-            NetworkWithVersion? output = null;
+            NetworkWithVersion? output;
 
             switch (networkData.Format)
             {
@@ -86,10 +85,8 @@ namespace Dbosoft.CloudInit.ConfigDrive
                 default:
                     throw new ArgumentOutOfRangeException();
             }
-
-            if (output == null) return;
-            var serializer = new SerializerBuilder().BuildValueSerializer();
-            serializer.SerializeValue(emitter, output, output.GetType());
+            
+            serializer(output, output.GetType());
         }
 
         private class NetworkWithVersion
