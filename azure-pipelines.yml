@@ -15,9 +15,19 @@ variables:
   buildConfiguration: 'Release'
 
 steps:
-- task: UseGitVersion@5
+- task: UseDotNet@2
+  displayName: install .NET SDK
   inputs:
-    versionSpec: '5.x'
+    packageType: sdk
+    version: '8.0.x'
+
+- task: gitversion/setup@3
+  displayName: install GitVersion
+  inputs:
+    versionSpec: '6.x'
+
+- task: gitversion/execute@3
+  displayName: determine version
 
 - task: DotNetCoreCLI@2
   inputs:
