@@ -41,7 +41,8 @@ namespace Dbosoft.CloudInit.ConfigDrive
                 }
 
                 sb.Append("\n");
-                sb.Append(contentString+ "\n");
+                sb.Append(contentString);
+                sb.Append('\n');
 
 
             }
