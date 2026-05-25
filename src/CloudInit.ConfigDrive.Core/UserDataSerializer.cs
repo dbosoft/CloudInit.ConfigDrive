@@ -16,9 +16,12 @@ namespace Dbosoft.CloudInit.ConfigDrive
             sb.Append("From nobody Fri Jan  11 07:00:00 1980\n");
             sb.Append("Content-Type: multipart/mixed; boundary=\"==BOUNDARY==\"\n");
             sb.Append("MIME-Version: 1.0\n");
+            sb.Append("\n");
 
+            var hasParts = false;
             foreach (var data in userData)
             {
+                hasParts = true;
                 sb.Append("--==BOUNDARY==\n");
                 sb.Append("MIME-Version: 1.0\n");
 
@@ -37,10 +40,18 @@ namespace Dbosoft.CloudInit.ConfigDrive
                     sb.Append("Content-Transfer-Encoding: base64\n");
                 }
 
-                sb.Append(contentString+ "\n");
+                sb.Append("\n");
+                sb.Append(contentString);
+                sb.Append('\n');
 
 
             }
+
+            // Only emit the RFC 2046 close delimiter when at least one part was
+            // written; a lone "--==BOUNDARY==--" with no opening boundary would be
+            // a malformed multipart body.
+            if (hasParts)
+                sb.Append("--==BOUNDARY==--\n");
 
             if (!options.GZip)
                 return new MemoryStream(Encoding.ASCII.GetBytes(sb.ToString()));
