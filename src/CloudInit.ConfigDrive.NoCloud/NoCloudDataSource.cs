@@ -55,10 +55,12 @@ namespace Dbosoft.CloudInit.ConfigDrive
 
             }
 
+            // The user-data file must always be written. Recent cloud-init versions
+            // treat user-data as a required part of the NoCloud datasource and abort
+            // (without even applying the network config) when it is missing. An empty
+            // user-data serializes to an empty multipart message, which cloud-init
+            // accepts.
             var userDataArray = userData.ToArray();
-            if(userDataArray.Length == 0)
-                return result;
-
             result.Files.Add(new ResultFile("user-data", await _userDataSerializer.SerializeUserData(userDataArray, options.UserData)));
 
             return result;
