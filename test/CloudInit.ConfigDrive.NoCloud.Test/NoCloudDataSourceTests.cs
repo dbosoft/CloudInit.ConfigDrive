@@ -108,4 +108,30 @@ public class NoCloudDataSourceTests
 
     }
 
+    [Fact]
+    public async Task WritesUserDataFileEvenWhenUserDataIsEmpty()
+    {
+        // cloud-init requires the user-data file to be present on the NoCloud
+        // datasource, so it must be written even when there is no user-data.
+        var ds = new NoCloudDataSource(new NoCloudConfigDriveMetaData
+            {
+                HostName = "unit",
+                InstanceId = "test"
+            }, new YamlSerializer(), new UserDataSerializer());
+
+        var content = await ds.GenerateConfigDriveContent(
+            new Dictionary<string, string>(),
+            null,
+            Array.Empty<UserData>(),
+            new GenerateConfigDriveOptions());
+
+        Assert.Equal(2, content.Files.Count);
+        Assert.Equal("meta-data", content.Files[0].Path);
+        Assert.Equal("user-data", content.Files[1].Path);
+
+        using var userDataStream = new MemoryStream();
+        await content.Files[1].Content.CopyToAsync(userDataStream);
+        Assert.NotEmpty(userDataStream.ToArray());
+    }
+
 }
